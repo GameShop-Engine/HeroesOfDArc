@@ -448,7 +448,7 @@ System.out.println("KeyPressed");
 
          }
          
-         if (kie.getKeyChar() == 'e' && kie.isPressed()){
+         if (kie.getKeyChar() == 'q' && kie.isPressed()){
          
 //             Vector3f towards = new Vector3f(App.target.getWorldTranslation().subtract(App.camNode.getWorldTranslation())).mult(-0.01f);
 //             

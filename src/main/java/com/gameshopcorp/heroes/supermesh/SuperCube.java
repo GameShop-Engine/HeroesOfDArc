@@ -11,7 +11,7 @@ import java.util.HashMap;
 
 public class SuperCube {
 
-    boolean debug = false;
+    boolean debug = true;
     public SuperMesh superMesh;
     public ArrayList<SuperJoin> superJoins;
     public SuperCube(SuperSquare top, SuperSquare bottom, SuperSquare front, SuperSquare back, SuperSquare left, SuperSquare right){
@@ -48,7 +48,8 @@ public class SuperCube {
         SuperJoin bottomFrontRight = new SuperJoin(new SuperSurface[]{superMesh.superMesh.get("bottom"), superMesh.superMesh.get("front"), superMesh.superMesh.get("right")}, new Vector2f[]{new Vector2f(3,3), new Vector2f(0,3), new Vector2f(0,3)});
         SuperJoin bottomBackLeft = new SuperJoin(new SuperSurface[]{superMesh.superMesh.get("bottom"), superMesh.superMesh.get("back"), superMesh.superMesh.get("left")}, new Vector2f[]{new Vector2f(0,0), new Vector2f(0,0), new Vector2f(0,0)});
         SuperJoin bottomBackRight = new SuperJoin(new SuperSurface[]{superMesh.superMesh.get("bottom"), superMesh.superMesh.get("back"), superMesh.superMesh.get("right")}, new Vector2f[]{new Vector2f(0,3), new Vector2f(0,3), new Vector2f(0,0)});
-
+        
+        
         SuperJoin edgeTopFrontMidLeft = new SuperJoin(new SuperSurface[]{superMesh.superMesh.get("top"), superMesh.superMesh.get("front")}, new Vector2f[]{new Vector2f(3,1), new Vector2f(3,1)});
         SuperJoin edgeTopFrontMidRight = new SuperJoin(new SuperSurface[]{superMesh.superMesh.get("top"), superMesh.superMesh.get("front")}, new Vector2f[]{new Vector2f(3,2), new Vector2f(3,2)});
         SuperJoin edgeBottomFrontMidLeft = new SuperJoin(new SuperSurface[]{superMesh.superMesh.get("bottom"), superMesh.superMesh.get("front")}, new Vector2f[]{new Vector2f(3,1), new Vector2f(0,1)});
