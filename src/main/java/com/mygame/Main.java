@@ -1,5 +1,7 @@
 package com.mygame;
 
+import com.gameshopcorp.heroes.app.App;
+import com.gameshopcorp.heroes.character.basic.Player;
 import com.jme3.app.SimpleApplication;
 import com.jme3.material.Material;
 import com.jme3.math.ColorRGBA;
@@ -21,14 +23,20 @@ public class Main extends SimpleApplication {
 
     @Override
     public void simpleInitApp() {
-        Box b = new Box(1, 1, 1);
-        Geometry geom = new Geometry("Box", b);
+//        Box b = new Box(1, 1, 1);
+//        Geometry geom = new Geometry("Box", b);
+//
+//        Material mat = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
+//        mat.setColor("Color", ColorRGBA.Blue);
+//        geom.setMaterial(mat);
+//
+//        rootNode.attachChild(geom);
+        App.getInstance().app = this;
 
-        Material mat = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
-        mat.setColor("Color", ColorRGBA.Blue);
-        geom.setMaterial(mat);
+        flyCam.setEnabled(true);
 
-        rootNode.attachChild(geom);
+        getViewPort().setBackgroundColor(ColorRGBA.White);
+        Player player = new Player();
     }
 
     @Override
