@@ -31,11 +31,11 @@ public class Main extends SimpleApplication {
 //        geom.setMaterial(mat);
 //
 //        rootNode.attachChild(geom);
-        App.getInstance().app = this;
+        App app = new App(this);
 
-        flyCam.setEnabled(true);
+        flyCam.setEnabled(false);
 
-        getViewPort().setBackgroundColor(ColorRGBA.White);
+        //getViewPort().setBackgroundColor(ColorRGBA.White);
         Player player = new Player();
     }
 

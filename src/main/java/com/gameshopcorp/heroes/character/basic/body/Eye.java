@@ -1,4 +1,13 @@
 package com.gameshopcorp.heroes.character.basic.body;
 
-public class Eye {
+import com.gameshopcorp.heroes.character.basic.body.base.Base;
+import com.jme3.math.Vector4f;
+
+public class Eye extends Base {
+
+    public Eye(int numPoints, Vector4f baseColor) {
+        super(numPoints, baseColor);
+        
+        
+    }
 }

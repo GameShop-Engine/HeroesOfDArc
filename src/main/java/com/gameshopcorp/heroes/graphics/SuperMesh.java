@@ -31,7 +31,7 @@ public class SuperMesh {
 
         }
 
-        App.getInstance().app.getRootNode().attachChild(node);
+        App.app.getRootNode().attachChild(node);
 
 
     }
