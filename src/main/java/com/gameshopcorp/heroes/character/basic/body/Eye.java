@@ -10,10 +10,10 @@ public class Eye extends Base {
     public Eye(int numPoints, Vector4f baseColor) {
         super(numPoints, baseColor);
         
-        findJoin(get("back"), new Vector2f(0,0)).moveJoin(new Vector3f(.125f, .125f, 0f));
-        findJoin(get("back"), new Vector2f(0,3)).moveJoin(new Vector3f(-.125f, .125f, 0f));
-        findJoin(get("back"), new Vector2f(3,0)).moveJoin(new Vector3f(.125f, -.125f, 0f));
-        findJoin(get("back"), new Vector2f(3,3)).moveJoin(new Vector3f(-.125f, -.125f, 0f));
+        findJoin(get("back"), new Vector2f(0,3)).moveJoin(new Vector3f(.125f, .125f, 0f));
+//        findJoin(get("back"), new Vector2f(0,3)).moveJoin(new Vector3f(-.125f, .125f, 0f));
+//        findJoin(get("back"), new Vector2f(3,0)).moveJoin(new Vector3f(.125f, -.125f, 0f));
+//        findJoin(get("back"), new Vector2f(3,3)).moveJoin(new Vector3f(-.125f, -.125f, 0f));
         
     }
 }

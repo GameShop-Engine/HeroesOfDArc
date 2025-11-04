@@ -413,7 +413,7 @@ public class SelectMouseListener implements RawInputListener {//implements Actio
 //       
 //           release();
 //       }
-System.out.println("KeyPressed");
+//System.out.println("KeyPressed");
 
          if (kie.getKeyChar() == 'w' && kie.isPressed()){
          
