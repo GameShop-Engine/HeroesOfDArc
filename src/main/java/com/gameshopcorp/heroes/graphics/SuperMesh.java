@@ -38,18 +38,34 @@ public class SuperMesh {
 
     public SuperJoin findJoin(SuperSurface superSurface, Vector2f point){
 
+//        for (SuperJoin sj: superJoins){
+//            for (SuperSurface ss: sj.superSurfaces){
+//                if (ss.equals(superSurface)){
+//                    for (Vector2f p: sj.points){
+//                        if (p.equals(point)){
+//                            return sj;
+//                        }
+//                    }
+//                }
+//            }
+//        }
+
         for (SuperJoin sj: superJoins){
+        
+            int i = 0;
             for (SuperSurface ss: sj.superSurfaces){
+            
                 if (ss.equals(superSurface)){
-                    for (Vector2f p: sj.points){
-                        if (p.equals(point)){
-                            return sj;
-                        }
+                
+                    if (sj.points[i].equals(point)){
+                    
+                        return sj;
                     }
                 }
+                i++;
             }
+            
         }
-
         return null;
     }
 
