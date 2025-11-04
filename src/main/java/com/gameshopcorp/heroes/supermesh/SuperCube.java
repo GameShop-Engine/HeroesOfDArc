@@ -45,18 +45,17 @@ public class SuperCube {
         SuperJoin back02 = new SuperJoin(new SuperSurface[]{superMesh.superMesh.get("back"), superMesh.superMesh.get("bottom")}, new Vector2f[]{new Vector2f(0,2), new Vector2f(0,2)});
         SuperJoin back03 = new SuperJoin(new SuperSurface[]{superMesh.superMesh.get("back"), superMesh.superMesh.get("right"), superMesh.superMesh.get("bottom")}, new Vector2f[]{new Vector2f(0,3), new Vector2f(0,0), new Vector2f(0,3)});
 
+        SuperJoin back10 = new SuperJoin(new SuperSurface[]{superMesh.superMesh.get("back"), superMesh.superMesh.get("left")}, new Vector2f[]{new Vector2f(1,0), new Vector2f(1,0)});
+        SuperJoin back11 = new SuperJoin(new SuperSurface[]{superMesh.superMesh.get("back")}, new Vector2f[]{new Vector2f(1,1)});
+        SuperJoin back12 = new SuperJoin(new SuperSurface[]{superMesh.superMesh.get("back")}, new Vector2f[]{new Vector2f(1,2)});
+        SuperJoin back13 = new SuperJoin(new SuperSurface[]{superMesh.superMesh.get("back"), superMesh.superMesh.get("right")}, new Vector2f[]{new Vector2f(1,3), new Vector2f(1,0)});
         
-        SuperJoin back10;
-        SuperJoin back11;
-        SuperJoin back12;
-        SuperJoin back13;
+        SuperJoin back20 = new SuperJoin(new SuperSurface[]{superMesh.superMesh.get("back"), superMesh.superMesh.get("left")}, new Vector2f[]{new Vector2f(2,0), new Vector2f(2,0)});
+        SuperJoin back21 = new SuperJoin(new SuperSurface[]{superMesh.superMesh.get("back")}, new Vector2f[]{new Vector2f(2,1)});
+        SuperJoin back22 = new SuperJoin(new SuperSurface[]{superMesh.superMesh.get("back")}, new Vector2f[]{new Vector2f(2,2)});
+        SuperJoin back23 = new SuperJoin(new SuperSurface[]{superMesh.superMesh.get("back"),superMesh.superMesh.get("right")}, new Vector2f[]{new Vector2f(2,3), new Vector2f(2,0)});
         
-        SuperJoin back20;
-        SuperJoin back21;
-        SuperJoin back22;
-        SuperJoin back23;
-        
-        SuperJoin back30;
+        SuperJoin back30 = new SuperJoin(new SuperSurface[]{superMesh.superMesh.get("back"), superMesh.superMesh.get("left"), superMesh.superMesh.get("top")}, new Vector2f[]{new Vector2f(3,0), new Vector2f(3,0), new Vector2f(0,0)});
         SuperJoin back31;
         SuperJoin back32;
         SuperJoin back33;
@@ -177,6 +176,19 @@ public class SuperCube {
         superJoins.add(back01);
         superJoins.add(back02);
         superJoins.add(back03);
+        
+        superJoins.add(back10);
+        superJoins.add(back11);
+        superJoins.add(back12);
+        superJoins.add(back13);
+        
+        superJoins.add(back20);
+        superJoins.add(back21);
+        superJoins.add(back22);
+        superJoins.add(back23);
+        
+        superJoins.add(back30);
+        
         
         //DEPRECATED
         /*
