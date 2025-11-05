@@ -92,37 +92,48 @@ public class SuperCube {
         SuperJoin left02 = new SuperJoin(new SuperSurface[]{superMesh.superMesh.get("left"), superMesh.superMesh.get("bottom")}, new Vector2f[]{ new Vector2f(0,2), new Vector2f(2,0)});;
         SuperJoin left03 = new SuperJoin(new SuperSurface[]{superMesh.superMesh.get("left"), superMesh.superMesh.get("front"), superMesh.superMesh.get("bottom")}, new Vector2f[]{new Vector2f(0,3), new Vector2f(0,0), new Vector2f(0,3)});;
 
+        //
+
+        SuperJoin left10 = new SuperJoin(new SuperSurface[]{superMesh.superMesh.get("left"), superMesh.superMesh.get("back") }, new Vector2f[]{new Vector2f(1,0), new Vector2f(0,1)});;
+        SuperJoin left11 = new SuperJoin(new SuperSurface[]{superMesh.superMesh.get("left")}, new Vector2f[]{new Vector2f(1,1)});;
+        SuperJoin left12 = new SuperJoin(new SuperSurface[]{superMesh.superMesh.get("left")}, new Vector2f[]{new Vector2f(1,2)});;
+        SuperJoin left13 = new SuperJoin(new SuperSurface[]{superMesh.superMesh.get("left"), superMesh.superMesh.get("front")}, new Vector2f[]{new Vector2f(1,3), new Vector2f(0,1)});;
+
+        //
+
+        SuperJoin left20 = new SuperJoin(new SuperSurface[]{superMesh.superMesh.get("left"), superMesh.superMesh.get("back") }, new Vector2f[]{new Vector2f(2,0), new Vector2f(0,2)});;
+        SuperJoin left21 = new SuperJoin(new SuperSurface[]{superMesh.superMesh.get("left")}, new Vector2f[]{new Vector2f(2,1)});;
+        SuperJoin left22 = new SuperJoin(new SuperSurface[]{superMesh.superMesh.get("left")}, new Vector2f[]{new Vector2f(2,2)});;
+        SuperJoin left23 = new SuperJoin(new SuperSurface[]{superMesh.superMesh.get("left"), superMesh.superMesh.get("front")}, new Vector2f[]{new Vector2f(2,3), new Vector2f(0,2)});;
+
+
+
+        SuperJoin left30 = new SuperJoin(new SuperSurface[]{superMesh.superMesh.get("left"), superMesh.superMesh.get("back"), superMesh.superMesh.get("top")}, new Vector2f[]{new Vector2f(3,0), new Vector2f(0,0), new Vector2f(0,3)});;
+        SuperJoin left31 = new SuperJoin(new SuperSurface[]{superMesh.superMesh.get("left"), superMesh.superMesh.get("top")}, new Vector2f[]{ new Vector2f(3,1), new Vector2f(1,0)});;
+        SuperJoin left32 = new SuperJoin(new SuperSurface[]{superMesh.superMesh.get("left"), superMesh.superMesh.get("top")}, new Vector2f[]{ new Vector2f(3,2), new Vector2f(2,0)});;
+        SuperJoin left33 = new SuperJoin(new SuperSurface[]{superMesh.superMesh.get("left"), superMesh.superMesh.get("front"), superMesh.superMesh.get("top")}, new Vector2f[]{new Vector2f(3,3), new Vector2f(0,0), new Vector2f(3,0)});;
+
+         //
+
+        SuperJoin right00 = new SuperJoin(new SuperSurface[]{superMesh.superMesh.get("right"), superMesh.superMesh.get("back"), superMesh.superMesh.get("bottom")}, new Vector2f[]{new Vector2f(0,0), new Vector2f(0,0), new Vector2f(0,3)});;
+        SuperJoin right01 = new SuperJoin(new SuperSurface[]{superMesh.superMesh.get("right"), superMesh.superMesh.get("bottom")}, new Vector2f[]{ new Vector2f(0,1), new Vector2f(1,3)});;
+        SuperJoin right02 = new SuperJoin(new SuperSurface[]{superMesh.superMesh.get("right"), superMesh.superMesh.get("bottom")}, new Vector2f[]{ new Vector2f(0,2), new Vector2f(2,3)});;
+        SuperJoin right03 = new SuperJoin(new SuperSurface[]{superMesh.superMesh.get("right"), superMesh.superMesh.get("front"), superMesh.superMesh.get("bottom")}, new Vector2f[]{new Vector2f(0,3), new Vector2f(0,3), new Vector2f(3,3)});;
+
         //Start
-        
-        SuperJoin left10 = new SuperJoin(new SuperSurface[]{superMesh.superMesh.get("back"), superMesh.superMesh.get("left"), superMesh.superMesh.get("top")}, new Vector2f[]{new Vector2f(3,0), new Vector2f(3,0), new Vector2f(0,0)});;
-        SuperJoin left11 = new SuperJoin(new SuperSurface[]{superMesh.superMesh.get("back"), superMesh.superMesh.get("left"), superMesh.superMesh.get("top")}, new Vector2f[]{new Vector2f(3,0), new Vector2f(3,0), new Vector2f(0,0)});;
-        SuperJoin left12 = new SuperJoin(new SuperSurface[]{superMesh.superMesh.get("back"), superMesh.superMesh.get("left"), superMesh.superMesh.get("top")}, new Vector2f[]{new Vector2f(3,0), new Vector2f(3,0), new Vector2f(0,0)});;
-        SuperJoin left13 = new SuperJoin(new SuperSurface[]{superMesh.superMesh.get("back"), superMesh.superMesh.get("left"), superMesh.superMesh.get("top")}, new Vector2f[]{new Vector2f(3,0), new Vector2f(3,0), new Vector2f(0,0)});;
+
+        SuperJoin right10 = new SuperJoin(new SuperSurface[]{superMesh.superMesh.get("right"), superMesh.superMesh.get("back") }, new Vector2f[]{new Vector2f(1,0), new Vector2f(0,1)});;
+        SuperJoin right11 = new SuperJoin(new SuperSurface[]{superMesh.superMesh.get("right")}, new Vector2f[]{new Vector2f(1,1)});;
+        SuperJoin right12 = new SuperJoin(new SuperSurface[]{superMesh.superMesh.get("right")}, new Vector2f[]{new Vector2f(1,2)});;
+        SuperJoin right13 = new SuperJoin(new SuperSurface[]{superMesh.superMesh.get("right"), superMesh.superMesh.get("front")}, new Vector2f[]{new Vector2f(1,3), new Vector2f(0,1)});;
+
+//        SuperJoin right10 = new SuperJoin(new SuperSurface[]{superMesh.superMesh.get("back"), superMesh.superMesh.get("left"), superMesh.superMesh.get("top")}, new Vector2f[]{new Vector2f(3,0), new Vector2f(3,0), new Vector2f(0,0)});;
+//        SuperJoin right11 = new SuperJoin(new SuperSurface[]{superMesh.superMesh.get("back"), superMesh.superMesh.get("left"), superMesh.superMesh.get("top")}, new Vector2f[]{new Vector2f(3,0), new Vector2f(3,0), new Vector2f(0,0)});;
+//        SuperJoin right12 = new SuperJoin(new SuperSurface[]{superMesh.superMesh.get("back"), superMesh.superMesh.get("left"), superMesh.superMesh.get("top")}, new Vector2f[]{new Vector2f(3,0), new Vector2f(3,0), new Vector2f(0,0)});;
+//        SuperJoin right13 = new SuperJoin(new SuperSurface[]{superMesh.superMesh.get("back"), superMesh.superMesh.get("left"), superMesh.superMesh.get("top")}, new Vector2f[]{new Vector2f(3,0), new Vector2f(3,0), new Vector2f(0,0)});;
 
         //End
 
-        SuperJoin left20 = new SuperJoin(new SuperSurface[]{superMesh.superMesh.get("back"), superMesh.superMesh.get("left"), superMesh.superMesh.get("top")}, new Vector2f[]{new Vector2f(3,0), new Vector2f(3,0), new Vector2f(0,0)});;
-        SuperJoin left21 = new SuperJoin(new SuperSurface[]{superMesh.superMesh.get("back"), superMesh.superMesh.get("left"), superMesh.superMesh.get("top")}, new Vector2f[]{new Vector2f(3,0), new Vector2f(3,0), new Vector2f(0,0)});;
-        SuperJoin left22 = new SuperJoin(new SuperSurface[]{superMesh.superMesh.get("back"), superMesh.superMesh.get("left"), superMesh.superMesh.get("top")}, new Vector2f[]{new Vector2f(3,0), new Vector2f(3,0), new Vector2f(0,0)});;
-        SuperJoin left23 = new SuperJoin(new SuperSurface[]{superMesh.superMesh.get("back"), superMesh.superMesh.get("left"), superMesh.superMesh.get("top")}, new Vector2f[]{new Vector2f(3,0), new Vector2f(3,0), new Vector2f(0,0)});;
-        
-        SuperJoin left30 = new SuperJoin(new SuperSurface[]{superMesh.superMesh.get("back"), superMesh.superMesh.get("left"), superMesh.superMesh.get("top")}, new Vector2f[]{new Vector2f(3,0), new Vector2f(3,0), new Vector2f(0,0)});;
-        SuperJoin left31 = new SuperJoin(new SuperSurface[]{superMesh.superMesh.get("back"), superMesh.superMesh.get("left"), superMesh.superMesh.get("top")}, new Vector2f[]{new Vector2f(3,0), new Vector2f(3,0), new Vector2f(0,0)});;
-        SuperJoin left32 = new SuperJoin(new SuperSurface[]{superMesh.superMesh.get("back"), superMesh.superMesh.get("left"), superMesh.superMesh.get("top")}, new Vector2f[]{new Vector2f(3,0), new Vector2f(3,0), new Vector2f(0,0)});;
-        SuperJoin left33 = new SuperJoin(new SuperSurface[]{superMesh.superMesh.get("back"), superMesh.superMesh.get("left"), superMesh.superMesh.get("top")}, new Vector2f[]{new Vector2f(3,0), new Vector2f(3,0), new Vector2f(0,0)});;
-        
-        //
-        
-        SuperJoin right00 = new SuperJoin(new SuperSurface[]{superMesh.superMesh.get("back"), superMesh.superMesh.get("left"), superMesh.superMesh.get("top")}, new Vector2f[]{new Vector2f(3,0), new Vector2f(3,0), new Vector2f(0,0)});;
-        SuperJoin right01 = new SuperJoin(new SuperSurface[]{superMesh.superMesh.get("back"), superMesh.superMesh.get("left"), superMesh.superMesh.get("top")}, new Vector2f[]{new Vector2f(3,0), new Vector2f(3,0), new Vector2f(0,0)});;
-        SuperJoin right02 = new SuperJoin(new SuperSurface[]{superMesh.superMesh.get("back"), superMesh.superMesh.get("left"), superMesh.superMesh.get("top")}, new Vector2f[]{new Vector2f(3,0), new Vector2f(3,0), new Vector2f(0,0)});;
-        SuperJoin right03 = new SuperJoin(new SuperSurface[]{superMesh.superMesh.get("back"), superMesh.superMesh.get("left"), superMesh.superMesh.get("top")}, new Vector2f[]{new Vector2f(3,0), new Vector2f(3,0), new Vector2f(0,0)});;
-        
-        SuperJoin right10 = new SuperJoin(new SuperSurface[]{superMesh.superMesh.get("back"), superMesh.superMesh.get("left"), superMesh.superMesh.get("top")}, new Vector2f[]{new Vector2f(3,0), new Vector2f(3,0), new Vector2f(0,0)});;
-        SuperJoin right11 = new SuperJoin(new SuperSurface[]{superMesh.superMesh.get("back"), superMesh.superMesh.get("left"), superMesh.superMesh.get("top")}, new Vector2f[]{new Vector2f(3,0), new Vector2f(3,0), new Vector2f(0,0)});;
-        SuperJoin right12 = new SuperJoin(new SuperSurface[]{superMesh.superMesh.get("back"), superMesh.superMesh.get("left"), superMesh.superMesh.get("top")}, new Vector2f[]{new Vector2f(3,0), new Vector2f(3,0), new Vector2f(0,0)});;
-        SuperJoin right13 = new SuperJoin(new SuperSurface[]{superMesh.superMesh.get("back"), superMesh.superMesh.get("left"), superMesh.superMesh.get("top")}, new Vector2f[]{new Vector2f(3,0), new Vector2f(3,0), new Vector2f(0,0)});;
-        
         SuperJoin right20 = new SuperJoin(new SuperSurface[]{superMesh.superMesh.get("back"), superMesh.superMesh.get("left"), superMesh.superMesh.get("top")}, new Vector2f[]{new Vector2f(3,0), new Vector2f(3,0), new Vector2f(0,0)});;
         SuperJoin right21 = new SuperJoin(new SuperSurface[]{superMesh.superMesh.get("back"), superMesh.superMesh.get("left"), superMesh.superMesh.get("top")}, new Vector2f[]{new Vector2f(3,0), new Vector2f(3,0), new Vector2f(0,0)});;
         SuperJoin right22 = new SuperJoin(new SuperSurface[]{superMesh.superMesh.get("back"), superMesh.superMesh.get("left"), superMesh.superMesh.get("top")}, new Vector2f[]{new Vector2f(3,0), new Vector2f(3,0), new Vector2f(0,0)});;
@@ -223,7 +234,27 @@ public class SuperCube {
         superJoins.add(left01);
         superJoins.add(left02);
         superJoins.add(left03);
-        
+
+        superJoins.add(left10);
+        superJoins.add(left11);
+        superJoins.add(left12);
+        superJoins.add(left13);
+
+        superJoins.add(left20);
+        superJoins.add(left21);
+        superJoins.add(left22);
+        superJoins.add(left23);
+
+        superJoins.add(left30);
+        superJoins.add(left31);
+        superJoins.add(left32);
+        superJoins.add(left33);
+
+        superJoins.add(right00);
+        superJoins.add(right01);
+        superJoins.add(right02);
+        superJoins.add(right03);
+
         //DEPRECATED
         /*
         SuperJoin topFrontLeft = new SuperJoin(new SuperSurface[]{superMesh.superMesh.get("top"), superMesh.superMesh.get("front"), superMesh.superMesh.get("left")}, new Vector2f[]{new Vector2f(3,0), new Vector2f(3,0), new Vector2f(3,3)});
