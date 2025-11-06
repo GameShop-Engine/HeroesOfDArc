@@ -20,10 +20,10 @@ public class SuperJoinGroup {
         }
     }
 
-    public void moveJoinWithScale(Vector3f move){
-
-        for (SuperJoin sj: superJoins){
-            sj.moveJoinWithScale(move);
-        }
-    }
+//    public void moveJoinWithScale(Vector3f move){
+//
+//        for (SuperJoin sj: superJoins){
+//            sj.moveJoinWithScale(move);
+//        }
+//    }
 }

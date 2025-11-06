@@ -19,6 +19,7 @@ public class Player {
 //        body.superMesh.node.move(-1f,-2,-.5f);
         
         Eye leftEye = new Eye(5, new Vector4f(255,255,255,255));
+        //leftEye.superMesh.node.scale(0.5f);
 
     }
 }

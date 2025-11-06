@@ -15,21 +15,21 @@ public class SuperJoin {
 
     }
 
+//    public void moveJoin(Vector3f move){
+//
+//        for (int i = 0; i < superSurfaces.length; i++){
+//
+//            superSurfaces[i].moveSuperLine((byte) points[i].x, (byte) points[i].y, new Vector3f(move));
+//
+//        }
+//
+//    }
+
     public void moveJoin(Vector3f move){
-
-        for (int i = 0; i < superSurfaces.length; i++){
-
-            superSurfaces[i].moveSuperLine((byte) points[i].x, (byte) points[i].y, new Vector3f(move));
-
-        }
-
-    }
-
-    public void moveJoinWithScale(Vector3f move){
         for (int i = 0; i < superSurfaces.length; i++){
 
             Vector3f scale = superSurfaces[i].node.getLocalScale();
-            superSurfaces[i].moveSuperLine((byte) points[i].x, (byte) points[i].y, new Vector3f(move).divide(scale));
+            superSurfaces[i].moveSuperLine((byte) points[i].x, (byte) points[i].y, new Vector3f(move.x/scale.x, move.y/scale.y, move.z/scale.z));//.divide(scale));
 
         }
     }
