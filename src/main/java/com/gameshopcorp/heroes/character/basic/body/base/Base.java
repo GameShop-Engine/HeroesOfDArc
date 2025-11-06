@@ -13,6 +13,8 @@ import com.jme3.math.Vector3f;
 import com.jme3.math.Vector4f;
 import com.jme3.scene.Node;
 
+import java.util.ArrayList;
+
 public class Base {
 
     public SuperMesh superMesh;
@@ -193,14 +195,41 @@ public class Base {
         if (a.y > b.y){
             incrY = -1;
         }
+
+        ArrayList<Vector3f> averageArray = new ArrayList<Vector3f>();
+
+
         for (int ax = (int) a.x; ax <= b.x; ax += incrX){
 
             for (int ay = (int) a.y; ay <= b.y; ay += incrY){
 
-                //findJoin(get(join), new Vector2f(ax, ay)).moveJoin(volume);
+                averageArray.add(findJoin(get(join), new Vector2f(ax, ay)).location);
 
             }
         }
 
+        Vector3f average = new Vector3f();
+
+        for (Vector3f averages: averageArray){
+
+            average = average.add(averages);
+        }
+
+        average = average.divide(averageArray.size());
+
+        System.out.println(average);
+        for (int ax = (int) a.x; ax <= b.x; ax += incrX){
+
+            for (int ay = (int) a.y; ay <= b.y; ay += incrY){
+
+               // averageArray.add(findJoin(get(join), new Vector2f(ax, ay)).location);
+
+                findJoin(get(join), new Vector2f(ax, ay)).moveJoin(findJoin(get(join), new Vector2f(ax, ay)).location.subtract(average).mult(directionAwayFromCenter));
+
+            }
+        }
     }
+
+
+
 }
