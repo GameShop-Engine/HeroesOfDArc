@@ -71,18 +71,136 @@ public class Base {
 
     }
 
-    public void moveInner(SuperJoin join, Vector3f volume){
+    public void moveCorners(String join, float directionAwayFromCenter){
+
+        SuperJoin corner00 = findJoin(get(join), new Vector2f(0,0));
+        SuperJoin corner30 = findJoin(get(join), new Vector2f(3,0));
+        SuperJoin corner03 = findJoin(get(join), new Vector2f(0,3));
+        SuperJoin corner33 = findJoin(get(join), new Vector2f(3,3));
+
+        Vector3f average = new Vector3f(corner00.location.add(corner30.location.add(corner03.location.add(corner33.location)))).divide(4);
+
+        corner00.moveJoin(corner00.location.subtract(average).mult(directionAwayFromCenter));
+        corner30.moveJoin(corner30.location.subtract(average).mult(directionAwayFromCenter));
+        corner03.moveJoin(corner03.location.subtract(average).mult(directionAwayFromCenter));
+        corner33.moveJoin(corner33.location.subtract(average).mult(directionAwayFromCenter));
+
+    }
+
+    public void moveCorners(String join, Vector3f volume){
+
+        findJoin(get(join), new Vector2f(0,0)).moveJoin(volume);
+        findJoin(get(join), new Vector2f(3,0)).moveJoin(volume);
+        findJoin(get(join), new Vector2f(0,3)).moveJoin(volume);
+        findJoin(get(join), new Vector2f(3,3)).moveJoin(volume);
 
 
     }
 
-    public void moveEdge(SuperJoin a, SuperJoin b, Vector3f volume){
+    /*
+    public void moveInner(String join,  Vector3f volume){
+
+        findJoin(get(join), new Vector2f(1,1)).moveJoin(volume);
+        findJoin(get(join), new Vector2f(2,1)).moveJoin(volume);
+        findJoin(get(join), new Vector2f(1,2)).moveJoin(volume);
+        findJoin(get(join), new Vector2f(2,2)).moveJoin(volume);
 
 
     }
 
-    public void moveRange(SuperJoin a, SuperJoin b, Vector3f volume){
+    public void moveEdge(String join, Vector2f a, Vector2f b, Vector3f volume){
 
+        boolean horizontal = false;
+        boolean greater = false;
+
+        if (a.x == b.x){
+            horizontal = true;
+
+            if (b.y > a.y){
+                greater = true;
+            } else {
+                greater = false;
+            }
+        } else if (a.y == b.y){
+            horizontal = false;
+            if (b.x > a.x){
+                greater = true;
+            } else {
+                greater = false;
+            }
+        } else {
+            System.out.println("invalid");
+            return;
+        }
+
+        findJoin(get(join), a).moveJoin(volume);
+
+        if (horizontal) {
+            if (greater) {
+                findJoin(get(join), a.add(new Vector2f(0, 1))).moveJoin(volume);
+                findJoin(get(join),a.add(new Vector2f(0, 2))).moveJoin(volume);
+            } else{
+                findJoin(get(join), a.subtract(new Vector2f(0, 1))).moveJoin(volume);
+                findJoin(get(join),a.subtract(new Vector2f(0, 2))).moveJoin(volume);
+            }
+        } else {
+
+            if (greater) {
+                findJoin(get(join), a.add(new Vector2f(1, 0))).moveJoin(volume);
+                findJoin(get(join),a.add(new Vector2f(2, 0))).moveJoin(volume);
+            } else{
+                findJoin(get(join), a.subtract(new Vector2f(1, 0))).moveJoin(volume);
+                findJoin(get(join),a.subtract(new Vector2f(2, 0))).moveJoin(volume);
+            }
+        }
+        findJoin(get(join), b).moveJoin(volume);
+
+
+    }
+
+     */
+
+    public void moveRange(String join, Vector2f a, Vector2f b, Vector3f volume){
+
+        int incrX = 1;
+        int incrY = 1;
+
+        if (a.x > b.x){
+            incrX = -1;
+        }
+        if (a.y > b.y){
+            incrY = -1;
+        }
+        for (int ax = (int) a.x; ax <= b.x; ax += incrX){
+
+            for (int ay = (int) a.y; ay <= b.y; ay += incrY){
+
+                findJoin(get(join), new Vector2f(ax, ay)).moveJoin(volume);
+
+            }
+        }
+
+    }
+
+    public void moveRange(String join, Vector2f a, Vector2f b, float directionAwayFromCenter){
+
+        int incrX = 1;
+        int incrY = 1;
+
+        if (a.x > b.x){
+            incrX = -1;
+        }
+        if (a.y > b.y){
+            incrY = -1;
+        }
+        for (int ax = (int) a.x; ax <= b.x; ax += incrX){
+
+            for (int ay = (int) a.y; ay <= b.y; ay += incrY){
+
+                //findJoin(get(join), new Vector2f(ax, ay)).moveJoin(volume);
+
+            }
+        }
 
     }
 }
