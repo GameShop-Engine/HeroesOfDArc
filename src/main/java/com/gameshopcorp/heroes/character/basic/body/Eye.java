@@ -12,7 +12,7 @@ public class Eye extends Base {
 
         //superMesh.node.scale(0.5f);
 
-        moveCorners(new Vector3f(2,2,2));
+        moveCorners(new Vector3f(-.25f,-.25f,-.25f));
         //findJoin(get("bottom"), new Vector2f(1,3)).moveJoin(new Vector3f(0, -1,  0f));
 //        findJoin(get("back"), new Vector2f(0,3)).moveJoin(new Vector3f(-.125f, .125f, 0f));
 //        findJoin(get("back"), new Vector2f(3,0)).moveJoin(new Vector3f(.125f, -.125f, 0f));

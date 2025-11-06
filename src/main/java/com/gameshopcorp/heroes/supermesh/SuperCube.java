@@ -11,7 +11,7 @@ import java.util.HashMap;
 
 public class SuperCube {
 
-    boolean debug = false;
+    boolean debug = true;
     public SuperMesh superMesh;
     public ArrayList<SuperJoin> superJoins;
     public SuperCube(SuperSquare top, SuperSquare bottom, SuperSquare front, SuperSquare back, SuperSquare left, SuperSquare right){

@@ -58,15 +58,15 @@ public class Base {
 
     public void moveCorners(Vector3f volume){
 
-        findJoin(get("front"), new Vector2f(0,0)).moveJoin(volume);
-        findJoin(get("front"), new Vector2f(3,0)).moveJoin(volume);
-        findJoin(get("front"), new Vector2f(0,3)).moveJoin(volume);
-        findJoin(get("front"), new Vector2f(3,3)).moveJoin(volume);
+        findJoin(get("front"), new Vector2f(0,0)).moveJoin(new Vector3f(-volume.x, -volume.y, volume.z));
+        findJoin(get("front"), new Vector2f(3,0)).moveJoin(new Vector3f(-volume.x, volume.y, volume.z));
+        findJoin(get("front"), new Vector2f(0,3)).moveJoin(new Vector3f(volume.x, -volume.y, volume.z));
+        findJoin(get("front"), new Vector2f(3,3)).moveJoin(new Vector3f(volume.x, volume.y, volume.z));
 
-        findJoin(get("back"), new Vector2f(0,0)).moveJoin(volume);
-        findJoin(get("back"), new Vector2f(3,0)).moveJoin(volume);
-        findJoin(get("back"), new Vector2f(0,3)).moveJoin(volume);
-        findJoin(get("back"), new Vector2f(3,3)).moveJoin(volume);
+        findJoin(get("back"), new Vector2f(0,0)).moveJoin(new Vector3f(-volume.x, -volume.y, -volume.z));
+        findJoin(get("back"), new Vector2f(3,0)).moveJoin(new Vector3f(-volume.x, volume.y, -volume.z));
+        findJoin(get("back"), new Vector2f(0,3)).moveJoin(new Vector3f(volume.x, -volume.y, -volume.z));
+        findJoin(get("back"), new Vector2f(3,3)).moveJoin(new Vector3f(volume.x, volume.y, -volume.z));
 
 
     }
