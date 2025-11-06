@@ -55,4 +55,29 @@ public class Base {
 
         return this.superMesh.findJoin(superSurface, point);
     }
+
+    public void moveCorners(Vector3f volume){
+
+        findJoin(get("front"), new Vector2f(0,0));
+        findJoin(get("front"), new Vector2f(3,0));
+        findJoin(get("front"), new Vector2f(0,3));
+        findJoin(get("front"), new Vector2f(3,3));
+
+
+    }
+
+    public void moveInner(SuperJoin join, Vector3f volume){
+
+
+    }
+
+    public void moveEdge(SuperJoin a, SuperJoin b, Vector3f volume){
+
+
+    }
+
+    public void moveRange(SuperJoin a, SuperJoin b, Vector3f volume){
+
+
+    }
 }
