@@ -23,19 +23,19 @@ public class Base {
 
     public Base(int numPoints, Vector4f baseColor) {
 
-        ATMS atmsTop = new ATMS("Top", 128, 128);
-        atmsTop.layer.drawCircle(64, 64, 128, baseColor);
-        ATMS atmsBottom = new ATMS("Top", 128, 128);
-        atmsBottom.layer.drawCircle(64, 64, 128, baseColor);
-        ATMS atmsLeft = new ATMS("Top", 128, 128);
-        atmsLeft.layer.drawCircle(64, 64, 128, baseColor);
-        ATMS atmsRight = new ATMS("Top", 128, 128);
-        atmsRight.layer.drawCircle(64, 64, 128, baseColor);
-        ATMS atmsFront = new ATMS("Top", 128, 128);
-        atmsFront.layer.drawCircle(64, 64, 128, baseColor);
-        ATMS atmsBack = new ATMS("Top", 128, 128);
-        atmsBack.layer.drawCircle(64, 64, 128, baseColor);
-
+        int size = 128;
+        ATMS atmsTop = new ATMS("Top", size, size);
+        atmsTop.layer.drawCircle(size / 2, size/2, size, baseColor);
+        ATMS atmsBottom = new ATMS("Top", size, size);
+        atmsBottom.layer.drawCircle(size /2, size/2, size, baseColor);
+        ATMS atmsLeft = new ATMS("Top", size, size);
+        atmsLeft.layer.drawCircle(size / 2, size/2, size, baseColor);
+        ATMS atmsRight = new ATMS("Top", size, size);
+        atmsRight.layer.drawCircle(size / 2, size/2, size, baseColor);
+        ATMS atmsFront = new ATMS("Top", size, size);
+        atmsFront.layer.drawCircle(size / 2, size/2, size, baseColor);
+        ATMS atmsBack = new ATMS("Top", size, size);
+        atmsBack.layer.drawCircle(size / 2, size/2, size, baseColor);
 
         SuperSquare sTop = new SuperSquare("top", atmsTop, new Node("top"), numPoints, new Vector3f(0, 1, 0), new Vector3f(1, 1, 0), new Vector3f(0, 1, 1), new Vector3f(1, 1, 1));
         SuperSquare sBottom = new SuperSquare("bottom", atmsBottom, new Node("bottom"), numPoints, new Vector3f(0, 0, 0), new Vector3f(1, 0, 0), new Vector3f(0, 0, 1), new Vector3f(1, 0, 1));
@@ -43,6 +43,14 @@ public class Base {
         SuperSquare sBack = new SuperSquare("back", atmsBack, new Node("back"), numPoints, new Vector3f(0, 0, 0), new Vector3f(1, 0, 0), new Vector3f(0, 1, 0), new Vector3f(1, 1, 0));
         SuperSquare sLeft = new SuperSquare("left", atmsLeft, new Node("left"), numPoints, new Vector3f(0, 0, 0), new Vector3f(0, 0, 1), new Vector3f(0, 1, 0), new Vector3f(0, 1, 1));
         SuperSquare sRight = new SuperSquare("right", atmsRight, new Node("right"), numPoints, new Vector3f(1, 0, 0), new Vector3f(1, 0, 1), new Vector3f(1, 1, 0), new Vector3f(1, 1, 1));
+
+
+//        SuperSquare sTop = new SuperSquare("top", App.defaultATMS, new Node("top"), numPoints, new Vector3f(0, 1, 0), new Vector3f(1, 1, 0), new Vector3f(0, 1, 1), new Vector3f(1, 1, 1));
+//        SuperSquare sBottom = new SuperSquare("bottom", App.defaultATMS, new Node("bottom"), numPoints, new Vector3f(0, 0, 0), new Vector3f(1, 0, 0), new Vector3f(0, 0, 1), new Vector3f(1, 0, 1));
+//        SuperSquare sFront = new SuperSquare("front", App.defaultATMS, new Node("front"), numPoints, new Vector3f(0, 0, 1), new Vector3f(1, 0, 1), new Vector3f(0, 1, 1), new Vector3f(1, 1, 1));
+//        SuperSquare sBack = new SuperSquare("back", App.defaultATMS, new Node("back"), numPoints, new Vector3f(0, 0, 0), new Vector3f(1, 0, 0), new Vector3f(0, 1, 0), new Vector3f(1, 1, 0));
+//        SuperSquare sLeft = new SuperSquare("left", App.defaultATMS, new Node("left"), numPoints, new Vector3f(0, 0, 0), new Vector3f(0, 0, 1), new Vector3f(0, 1, 0), new Vector3f(0, 1, 1));
+//        SuperSquare sRight = new SuperSquare("right", App.defaultATMS, new Node("right"), numPoints, new Vector3f(1, 0, 0), new Vector3f(1, 0, 1), new Vector3f(1, 1, 0), new Vector3f(1, 1, 1));
 
         SuperCube superCube = new SuperCube(sTop, sBottom, sFront, sBack, sLeft, sRight);
 

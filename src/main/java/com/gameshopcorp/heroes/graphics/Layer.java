@@ -99,15 +99,22 @@ public class Layer {
 
         byte[] output = new byte[width * height * 4];
         int i = 0;
-        for (short y = 0; y < height; y++){
-            for (short x = 0; x < width * 4; x +=4){
+        for (int y = 0; y < height; y++){
+            for (int x = 0; x < width * 4; x +=4){
 
-                output[i] = (byte) ((layer[y][x]));
-                output[i + 1] = (byte) (layer[y][x + 1]);
-                output[i + 2] = (byte) ((layer[y][x + 2]));
-                output[i + 3] = (byte) (layer[y][x + 3]);
+                try {
+                    output[i] = (byte) ((layer[y][x]));
+                    output[i + 1] = (byte) (layer[y][x + 1]);
+                    output[i + 2] = (byte) ((layer[y][x + 2]));
+                    output[i + 3] = (byte) (layer[y][x + 3]);
 
-                i += 4;
+                    i += 4;
+                } catch (ArrayIndexOutOfBoundsException ex){
+                    System.out.println("i " + i);
+                    System.out.println("x " + x);
+                    System.out.println("y " + y);
+
+                }
             }
 
         }

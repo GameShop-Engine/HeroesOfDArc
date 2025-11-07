@@ -27,8 +27,8 @@ public class App {
         SelectMouseListener selectMouseListener = new SelectMouseListener();
         App.app.getInputManager().addRawInputListener(selectMouseListener);
 
-        defaultATMS = new ATMS("default", 20,20);
-        defaultATMS.layer.drawCircle(10,10,10,new Vector4f(255,255,255,255));
+        defaultATMS = new ATMS("default", 16384,16384);
+        defaultATMS.layer.drawCircle(defaultATMS.width /2, defaultATMS.height/2,defaultATMS.width,new Vector4f(255,255,255,255));
     }
 
     public static float random(float min, float max){
