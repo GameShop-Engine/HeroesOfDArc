@@ -52,15 +52,7 @@ public class Player {
         foreHead.superMesh.bake();
         leftFaceCheek.superMesh.bake();
         rightFaceCheek.superMesh.bake();
-       // leftEye.superMesh.bake();
-//        GeometryBatchFactory.optimize(leftEye.superMesh.node);
-//        GeometryBatchFactory.optimize(rightEye.superMesh.node);
-//        GeometryBatchFactory.optimize(nostrils.superMesh.node);
-//        GeometryBatchFactory.optimize(nose.superMesh.node);
-//        GeometryBatchFactory.optimize(foreHead.superMesh.node);
-//        GeometryBatchFactory.optimize(leftFaceCheek.superMesh.node);
-//        GeometryBatchFactory.optimize(rightFaceCheek.superMesh.node);
-      //  GeometryBatchFactory.optimize(leftEye.superMesh.node);
+
 
     }
 }

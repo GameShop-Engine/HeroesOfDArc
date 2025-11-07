@@ -102,7 +102,7 @@ public class Main extends SimpleApplication {
 //        System.out.println(settings.getFrameRate());
 //        System.out.println(settings.getFrequency());
 
-       GeometryBatchFactory.optimize(rootNode, true);
+       //GeometryBatchFactory.optimize(rootNode, true);
         //Geometry geom = TextureAtlas.makeAtlasBatch(rootNode, assetManager, 4096);
 
         //rootNode.detachAllChildren();
