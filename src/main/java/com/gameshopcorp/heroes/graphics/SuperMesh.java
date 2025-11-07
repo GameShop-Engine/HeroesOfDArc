@@ -25,6 +25,7 @@ public class SuperMesh {
         int i = 0;
         for (String s: names){
 
+
             superMesh.put(s, superSurfaces[i]);
             node.attachChild(superSurfaces[i].node);
             i++;
@@ -69,6 +70,12 @@ public class SuperMesh {
         return null;
     }
 
+    public void bake(){
+        for (SuperSurface superSurface: superMesh.values()){
+
+            superSurface.bake();
+        }
+    }
 
      
 

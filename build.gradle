@@ -13,6 +13,10 @@ application {
     if (System.getProperty("os.name").toLowerCase().contains("mac")) {
         applicationDefaultJvmArgs = ['-XstartOnFirstThread']
     }
+    List<String> argumentList = new ArrayList<String>();
+    argumentList.add('-Xms13824m')
+    argumentList.add('-Xmx14336m')
+    applicationDefaultJvmArgs = argumentList
 }
 
 repositories {
@@ -21,7 +25,8 @@ repositories {
 }
 
 project.ext {
-  jmeVer = '3.8.1-stable'
+  //jmeVer = '3.1.0-stable'
+    jmeVer = '3.8.1-stable'
 }
 
 project(":assets") {
@@ -75,8 +80,13 @@ dependencies {
 }
 
 jar {
+    duplicatesStrategy = 'exclude'
+    
     manifest {
         attributes 'Main-Class': application.mainClass
+    }
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
     }
 }
 

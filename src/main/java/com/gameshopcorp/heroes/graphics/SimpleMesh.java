@@ -2,6 +2,7 @@ package com.gameshopcorp.heroes.graphics;
 import com.gameshopcorp.heroes.app.App;
 import com.jme3.material.Material;
 import com.jme3.material.RenderState;
+import com.jme3.math.ColorRGBA;
 import com.jme3.math.Vector2f;
 import com.jme3.math.Vector3f;
 import com.jme3.renderer.queue.RenderQueue;
@@ -9,6 +10,7 @@ import com.jme3.scene.Geometry;
 import com.jme3.scene.Mesh;
 import com.jme3.scene.Node;
 import com.jme3.scene.VertexBuffer;
+import com.jme3.scene.shape.Quad;
 import com.jme3.texture.Texture2D;
 import com.jme3.util.BufferUtils;
 
@@ -24,12 +26,16 @@ public class SimpleMesh {
     public Material mat;
 
     public Texture2D texture;
+
+    public Node node;
     public SimpleMesh(Vector3f[] vertices, Vector2f[] texCoord, Texture2D texture, Node node){
 
+        this.node = node;
         this.texture = texture;
 
         m = new Mesh();
 
+        Quad q = new Quad(1,1);
         // Vertex positions in space
         this.vertices = new Vector3f[4];
         this.vertices[0] = new Vector3f(vertices[0]);
@@ -65,9 +71,13 @@ public class SimpleMesh {
         // First mesh uses one solid color
         // *************************************************************************
 
+        /*
         // Creating a geometry, and apply a single color material to it
         this.geom = new Geometry("OurMesh", m);
 
+       // Vector3f average = new Vector3f(vertices[0].add(vertices[1]).add(vertices[2].add(vertices[3]))).divide(4);
+
+       // this.geom.move(average);
 
         mat = new Material(App.app.getAssetManager(), "Common/MatDefs/Misc/Unshaded.j3md");
         mat.getAdditionalRenderState().setFaceCullMode(RenderState.FaceCullMode.Off);
@@ -75,14 +85,15 @@ public class SimpleMesh {
         mat.setTransparent(true);
         mat.getAdditionalRenderState().setDepthTest(true);
         mat.getAdditionalRenderState().setDepthWrite(true);
-        // mat.setColor("Color", ColorRGBA.fromRGBA255(255,255,255,255));
+        //mat.setColor("Color", ColorRGBA.fromRGBA255(255,255,255,255));
         mat.setTexture("ColorMap", this.texture);
         geom.setQueueBucket(RenderQueue.Bucket.Transparent);
         geom.setMaterial(mat);
+        */
         //geom.getMesh().scaleTextureCoordinates(new Vector2f(2, 2));
 
         // Attaching our geometry to the root node.
         //app.getRootNode().attachChild(geom);
-        node.attachChild(geom);
+       // this.node.attachChild(geom);
     }
 }

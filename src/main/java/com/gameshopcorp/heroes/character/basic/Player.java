@@ -2,9 +2,15 @@ package com.gameshopcorp.heroes.character.basic;
 
 import com.gameshopcorp.heroes.character.basic.body.Body;
 import com.gameshopcorp.heroes.character.basic.body.Eye;
+import com.gameshopcorp.heroes.character.basic.body.FaceCheek;
+import com.gameshopcorp.heroes.character.basic.body.ForeHead;
 import com.gameshopcorp.heroes.character.basic.body.Head;
 import com.gameshopcorp.heroes.character.basic.body.Neck;
+import com.gameshopcorp.heroes.character.basic.body.Nose;
+import com.gameshopcorp.heroes.character.basic.body.Nostrils;
 import com.jme3.math.Vector4f;
+
+import jme3tools.optimize.GeometryBatchFactory;
 
 public class Player {
 
@@ -17,9 +23,44 @@ public class Player {
 //        Body body = new Body(5, new Vector4f(255,215,172,255));
 //        body.superMesh.node.scale(3,1,1);
 //        body.superMesh.node.move(-1f,-2,-.5f);
-        
-        Eye leftEye = new Eye(5, new Vector4f(255,255,255,255));
-        //leftEye.superMesh.node.scale(0.5f);
+
+        int n = 7;
+        Eye leftEye = new Eye(n, new Vector4f(255,255,255,255));
+        leftEye.superMesh.node.move(-1.5f, 0, 0);
+        Eye rightEye = new Eye(n, new Vector4f(255,255,255,255));
+        rightEye.superMesh.node.move(1.5f, 0, 0);
+
+        Nostrils nostrils = new Nostrils(n, new Vector4f(255,255,255,255));
+        nostrils.superMesh.node.move(-0.5f,-2,0);
+
+        Nose nose = new Nose(n, new Vector4f(255,255,255,255));
+        nose.superMesh.node.move(-0.5f,-2,1);
+
+        ForeHead foreHead = new ForeHead(n, new Vector4f(255,255,255,255));
+        foreHead.superMesh.node.move(-3.5f,2,0);
+
+        FaceCheek leftFaceCheek = new FaceCheek(n, new Vector4f(255,255,255,255));
+        leftFaceCheek.superMesh.node.move(-1.5f,-2f,0);
+
+        FaceCheek rightFaceCheek = new FaceCheek(n, new Vector4f(255,255,255,255));
+        rightFaceCheek.superMesh.node.move(1.5f,-2f,0);
+
+        leftEye.superMesh.bake();
+        rightEye.superMesh.bake();
+        nostrils.superMesh.bake();
+        nose.superMesh.bake();
+        foreHead.superMesh.bake();
+        leftFaceCheek.superMesh.bake();
+        rightFaceCheek.superMesh.bake();
+       // leftEye.superMesh.bake();
+//        GeometryBatchFactory.optimize(leftEye.superMesh.node);
+//        GeometryBatchFactory.optimize(rightEye.superMesh.node);
+//        GeometryBatchFactory.optimize(nostrils.superMesh.node);
+//        GeometryBatchFactory.optimize(nose.superMesh.node);
+//        GeometryBatchFactory.optimize(foreHead.superMesh.node);
+//        GeometryBatchFactory.optimize(leftFaceCheek.superMesh.node);
+//        GeometryBatchFactory.optimize(rightFaceCheek.superMesh.node);
+      //  GeometryBatchFactory.optimize(leftEye.superMesh.node);
 
     }
 }

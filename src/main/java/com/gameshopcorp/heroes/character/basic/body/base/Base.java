@@ -3,6 +3,7 @@ package com.gameshopcorp.heroes.character.basic.body.base;
 //import com.gameshopcorp.heroes.supermesh.SuperCube;
 
 import com.gameshopcorp.heroes.animation.join.SuperJoin;
+import com.gameshopcorp.heroes.app.App;
 import com.gameshopcorp.heroes.graphics.ATMS;
 import com.gameshopcorp.heroes.graphics.SuperMesh;
 import com.gameshopcorp.heroes.graphics.SuperSurface;
