@@ -84,8 +84,8 @@ public class Main extends SimpleApplication {
 //        }
         //getViewPort().setBackgroundColor(ColorRGBA.White);
 //        for (int i = 0; i < 2; i++) {
-            Player player = new Player();
-////
+        Player player = new Player();
+//
 //        }
 
 //        Runtime runtime = Runtime.getRuntime();

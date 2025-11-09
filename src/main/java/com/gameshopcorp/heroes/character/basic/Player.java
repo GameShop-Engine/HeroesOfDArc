@@ -27,8 +27,11 @@ public class Player {
         int n = 7;
         Eye leftEye = new Eye(n, new Vector4f(255,255,255,255));
         leftEye.superMesh.node.move(-1.5f, 0, 0);
+
+        leftEye.superMesh.superMesh.get("front").atms.layer.drawCircle(64,64,32, new Vector4f(0,0,255,255));
         Eye rightEye = new Eye(n, new Vector4f(255,255,255,255));
         rightEye.superMesh.node.move(1.5f, 0, 0);
+        rightEye.superMesh.superMesh.get("front").atms.layer.drawCircle(64,64,32, new Vector4f(0,0,255,255));
 
         Nostrils nostrils = new Nostrils(n, new Vector4f(255,255,255,255));
         nostrils.superMesh.node.move(-0.5f,-2,0);
