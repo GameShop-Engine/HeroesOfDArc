@@ -14,8 +14,8 @@ application {
         applicationDefaultJvmArgs = ['-XstartOnFirstThread']
     }
     List<String> argumentList = new ArrayList<String>();
-    argumentList.add('-Xms13824m')
-    argumentList.add('-Xmx14336m')
+    argumentList.add('-Xms14500m')
+    argumentList.add('-Xmx15000m')
     applicationDefaultJvmArgs = argumentList
 }
 

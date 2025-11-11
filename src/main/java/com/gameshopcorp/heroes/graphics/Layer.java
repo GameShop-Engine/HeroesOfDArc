@@ -22,6 +22,44 @@ public class Layer {
         //layer = new Vector4f[height][width];
     }
 
+    public Layer copy(){
+        Layer clone = new Layer(width, height);
+        clone.layer = layer;
+        return clone;
+    }
+
+    public void putLayer(Layer input, Vector2f start, Vector2f end){
+
+        //Vector2f scale = new Vector2f(input.width/(end.x - start.x),input.height/(end.y - start.y));
+
+        int y1 = 0;
+        for (int y = (int)start.y; y < end.y; y++){
+
+            int x1 = 0;
+            for (int x = (int)start.x; x < end.x; x++){
+
+//                if (input.layer[(int) (y * scale.y)][(int) (scale.x * x * 4)] == 0){
+//                    continue;
+//                }
+
+//                layer[y][x * 4] =  input.layer[(int) (y * scale.y)][(int) (scale.x * x * 4)];
+//                layer[y][(x * 4) + 1]  = input.layer[(int) (y * scale.y)][(int) (scale.x * x * 4) + 1];
+//                layer[y][(x * 4) + 2] = input.layer[(int) (y * scale.y)][(int) (scale.x * x * 4) + 2];
+//                layer[y][(x * 4) + 3]  = input.layer[(int) (y * scale.y)][(int) (scale.x * x * 4) + 3];
+
+                //System.out.println("x " + x);
+                layer[y][x * 4] =  input.layer[(int) (y1)][(int) (  x1 * 4)];
+                layer[y][(x * 4) + 1]  = input.layer[(int) (y1 )][(int) (  x1 * 4) + 1];
+                layer[y][(x * 4) + 2] = input.layer[(int) (y1 )][(int) (  x1 * 4) + 2];
+                layer[y][(x * 4) + 3]  = input.layer[(int) (y1  )][(int) ( x1 * 4) + 3];
+
+                x1++;
+            }
+            y1++;
+        }
+
+    }
+
 
     public void drawRectangle(Vector2f start, Vector2f end, Vector4f color){
 
@@ -37,6 +75,7 @@ public class Layer {
         }
 
     }
+
 
     /**
      color should be 0 to 255;

@@ -2,19 +2,26 @@ package com.mygame;
 
 import com.gameshopcorp.heroes.app.App;
 import com.gameshopcorp.heroes.character.basic.Player;
+import com.gameshopcorp.heroes.character.basic.body.base.Base;
 import com.gameshopcorp.heroes.graphics.ATMS;
+import com.gameshopcorp.heroes.graphics.cloud.SuperMeshCloud;
+import com.gameshopcorp.heroes.supermesh.SuperSquare;
 import com.jme3.app.SimpleApplication;
 import com.jme3.material.Material;
 import com.jme3.math.ColorRGBA;
+import com.jme3.math.Vector3f;
 import com.jme3.math.Vector4f;
 import com.jme3.renderer.RenderManager;
 import com.jme3.scene.Geometry;
+import com.jme3.scene.Node;
 import com.jme3.scene.shape.Box;
 import com.jme3.scene.shape.Quad;
 import com.jme3.scene.shape.Sphere;
 import com.jme3.system.AppSettings;
 import com.jme3.texture.Texture;
 import com.jme3.texture.Texture2D;
+
+import java.util.ArrayList;
 
 import jme3tools.optimize.GeometryBatchFactory;
 import jme3tools.optimize.TextureAtlas;
@@ -47,16 +54,44 @@ public class Main extends SimpleApplication {
         //appSettings.setFrequency(0);
         setSettings(appSettings);
 
-//        Quad q = new Quad(1,1);
-//        Geometry geom = new Geometry("Quad", q);
+        App app = new App(this);
+
+        //int n = 10;
+        //ArrayList<Vector3f> arrayList = new ArrayList<>(100000000);
+//        int j = 0;
+//        for (SuperMeshCloud cloud: App.superMeshCloud){
+//            for (int i = 0; i < 8; i++) {
+//                cloud.allSuperMeshes.add(new Base(5, new Vector4f(255, 255, 255, 255)).superMesh);
 //
-//        ATMS bigTexture = new ATMS("Big", 16384, 16384);
-//        bigTexture.layer.drawCircle(bigTexture.width/2, bigTexture.height/2, bigTexture.width, new Vector4f(255,255,255,255));
-//        Material mat = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
-//        mat.setTexture("ColorMap", new Texture2D(bigTexture.makeATMS()));
-//        geom.setMaterial(mat);
-//        rootNode.attachChild(geom);
-//        geom.rotate(0,180,0);
+//            }
+//            cloud.texture = App.atmsCloud.get(j).texture2D();
+//
+//            cloud.create();
+//            cloud.applyRegistry();
+//            cloud.render();
+//            cloud.attachToScene();
+//            j++;
+//        }
+        // App.superMeshCloud.allSuperMeshes.clear();
+       // for (int i = 0; i < 1000; i++) {
+            //SuperSquare superSquare = new SuperSquare("Square", App.defaultATMS, new Node(" "), 2, new Vector3f(0, 0, 0), new Vector3f(1, 0, 0), new Vector3f(0, 1, 0), new Vector3f(1, 1, 0));
+
+            //superSquare.superMesh.bake();
+        //}
+        //rootNode.attachChild(superSquare.superMesh.node);
+
+        //        for (int i = 0; i < 10000; i++) {
+//            Quad q = new Quad(1,1);
+//            Geometry geom = new Geometry("Quad", q);
+////
+//// ATMS bigTexture = new ATMS("Big", 128, 128);
+////            //bigTexture.layer.drawCircle(bigTexture.width/2, bigTexture.height/2, bigTexture.width, new Vector4f(255,255,255,255));
+//            Material mat = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
+//            mat.setTexture("ColorMap", new Texture2D(App.defaultATMS.makeATMS()));
+//            geom.setMaterial(mat);
+//            rootNode.attachChild(geom);
+//            geom.rotate(0, 180, 0);
+//        }
 //        Box b = new Box(1, 1, 1);
 //        Geometry geom = new Geometry("Box", b);
 //
@@ -64,8 +99,8 @@ public class Main extends SimpleApplication {
 //        mat.setColor("Color", ColorRGBA.Blue);
 //        geom.setMaterial(mat);
 //
-//        rootNode.attachChild(geom);
-        App app = new App(this);
+  //       rootNode.attachChild(geom);
+
 
         flyCam.setEnabled(false);
 
@@ -83,10 +118,11 @@ public class Main extends SimpleApplication {
 //            rootNode.attachChild(geom);
 //        }
         //getViewPort().setBackgroundColor(ColorRGBA.White);
-//        for (int i = 0; i < 2; i++) {
-        Player player = new Player();
-//
-//        }
+        for (int i = 0; i < 1000; i++) {
+       Player player = new Player();
+       player.node.move(0,0,i);
+
+        }
 
 //        Runtime runtime = Runtime.getRuntime();
 //
@@ -117,7 +153,7 @@ public class Main extends SimpleApplication {
 //        System.out.println(settings.getFrameRate());
 //        System.out.println(settings.getFrequency());
 
-       //GeometryBatchFactory.optimize(rootNode, true);
+       //GeometryBatchFactory.optimize(rootNode);
         //Geometry geom = TextureAtlas.makeAtlasBatch(rootNode, assetManager, 4096);
 
         //rootNode.detachAllChildren();

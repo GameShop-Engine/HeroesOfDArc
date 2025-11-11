@@ -1,4 +1,241 @@
 package com.gameshopcorp.heroes.graphics.cloud;
 
+import com.gameshopcorp.heroes.app.App;
+import com.gameshopcorp.heroes.graphics.SuperMesh;
+import com.gameshopcorp.heroes.graphics.SuperSurface;
+import com.jme3.material.Material;
+import com.jme3.material.RenderState;
+import com.jme3.math.ColorRGBA;
+import com.jme3.math.Vector2f;
+import com.jme3.math.Vector3f;
+import com.jme3.renderer.queue.RenderQueue;
+import com.jme3.scene.Geometry;
+import com.jme3.scene.Mesh;
+import com.jme3.scene.Node;
+import com.jme3.scene.VertexBuffer;
+import com.jme3.texture.Texture2D;
+import com.jme3.util.BufferUtils;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.function.IntFunction;
+
 public class SuperMeshCloud {
+
+    public ArrayList<Vector3f> vertices;
+    public ArrayList<Vector2f> texCoord;
+
+    public ArrayList<Integer> indexes;
+
+//    public Vector3f[] appliedVertices;
+//
+//    public Vector2f[] appliedTexCoord;
+//
+//    public int[] appliedIndexse;
+    public Mesh m;
+
+    public Geometry geom;
+
+    public Material mat;
+
+    public Texture2D texture;
+
+    public  ArrayList<SuperMesh> allSuperMeshes;
+
+    public ArrayList<Registry> registry;
+
+    public Node scene;
+
+    public int latestSuperMesh;
+    public int latestRegistry;
+    public SuperMeshCloud(){
+
+        vertices = new ArrayList<>(); //200000000
+        texCoord = new ArrayList<>();//200000000
+        indexes =  new ArrayList<>();//300000000
+        registry = new ArrayList<>();//50000000
+        allSuperMeshes = new ArrayList<>();//10000
+        //texture = App.defaultATMS.texture2D();
+        scene = new Node("Scene");
+        latestSuperMesh = 0;
+        latestRegistry = 0;
+
+    }
+
+    public void create(){
+
+        for (int i = 0; i < allSuperMeshes.size(); i++){
+            allSuperMeshes.get(i).bake();
+            for (int j = 0; j < allSuperMeshes.get(i).superMesh.size(); j++){
+                String side = "";
+                if (j == 0){
+                    side = "front";
+                }
+                if (j == 1){
+                    side = "back";
+                }
+                if (j == 2){
+                    side = "top";
+                }
+                if (j == 3){
+                    side = "bottom";
+                }
+                if (j == 4){
+                    side = "left";
+                }
+                if (j == 5){
+                    side = "right";
+                }
+
+                //System.out.println("side");
+                for (int l = 0; l < allSuperMeshes.get(i).superMesh.get(side).vertices.length / 4; l++) {
+                    //System.out.println("here");
+                    registry.add(new Registry(allSuperMeshes.get(i).superMesh.get(side)));
+                    for (int k = 0; k < 4; k++) {
+                        registry.get(latestRegistry).vertices[k] = k + (4 * l);
+                        registry.get(latestRegistry).texCoord[k] = k + (4 * l);
+                    }
+                    for (int m = 0; m < 6; m++) {
+                        registry.get(latestRegistry).indexes[m] = m + (6 * l);
+
+                    }
+                    latestRegistry++;
+                }
+                //for (int k = allSuperMeshes[i].superMesh.get(side).v
+
+            }
+          //  latestRegistry++;
+        }
+    }
+
+    public void applyRegistry(){
+
+        int v = 0;
+        int t = 0;
+        int in = 0;
+
+        int cr = 0;
+        for (Registry r: registry){
+
+            //System.out.println(r);
+            if (cr == latestRegistry){
+                break;
+            }
+            for (int i = 0; i < 4; i++) {
+
+                //vertices.[v] = new Vector3f();
+                vertices.add(r.superSurface.vertices[r.vertices[i]]);
+
+                //texCoord[t] = new Vector2f();
+                texCoord.add(r.superSurface.texCoord[r.texCoord[i]]);
+
+
+                v++;
+
+                t++;
+
+            }
+
+            for (int j = 0; j < 6; j++){
+
+                indexes.add(r.superSurface.indexes[r.indexes[j]]);
+            }
+
+            cr++;
+        }
+
+//        for (int i = 0; i < latestSuperMesh; i++){
+//           // allSuperMeshes[i].bake();
+//            for (int j = 0; j < allSuperMeshes[i].superMesh.size(); j++){
+//                String side = "";
+//                if (j == 0){
+//                    side = "front";
+//                }
+//                if (j == 1){
+//                    side = "back";
+//                }
+//                if (j == 2){
+//                    side = "top";
+//                }
+//                if (j == 3){
+//                    side = "bottom";
+//                }
+//                if (j == 4){
+//                    side = "left";
+//                }
+//                if (j == 5){
+//                    side = "right";
+//                }
+//             //   for (SuperSurface superSurface: allSuperMeshes[i].superMesh.values()){
+//
+//
+//
+//                  //  for (int k = 0; k < latestRegistry; k++){
+//
+//
+//                        this.vertices[v] = registry[k].vertices[0]
+//                  //  }
+//
+//                //}
+//
+//                }
+//            }
+
+
+
+    }
+    public void render(){
+
+        m = new Mesh();
+
+        Integer[] intbuffer = indexes.toArray(new Integer[0]);
+//intbuffer.to
+        //System.out.println(Arrays.toString(this.vertices.toArray(new Vector3f[0])));
+        m.setBuffer(VertexBuffer.Type.Position, 3, BufferUtils.createFloatBuffer( (this.vertices.toArray(new Vector3f[0]))));
+        m.setBuffer(VertexBuffer.Type.TexCoord, 2, BufferUtils.createFloatBuffer(this.texCoord.toArray(new Vector2f[0])));
+        m.setBuffer(VertexBuffer.Type.Index, 1, BufferUtils.createIntBuffer(Arrays.stream(intbuffer)
+                .mapToInt(Integer::intValue) // Or .mapToInt(i -> i)
+                .toArray()));
+
+        m.updateBound();
+        this.geom = new Geometry("OurMesh", m);
+
+        // Vector3f average = new Vector3f(vertices[0].add(vertices[1]).add(vertices[2].add(vertices[3]))).divide(4);
+
+        // this.geom.move(average);
+
+        mat = new Material(App.app.getAssetManager(), "Common/MatDefs/Misc/Unshaded.j3md");
+        mat.getAdditionalRenderState().setFaceCullMode(RenderState.FaceCullMode.Off);
+        mat.getAdditionalRenderState().setBlendMode(RenderState.BlendMode.Alpha);
+        mat.setTransparent(true);
+        mat.getAdditionalRenderState().setDepthTest(true);
+        mat.getAdditionalRenderState().setDepthWrite(true);
+        //mat.setColor("Color", ColorRGBA.fromRGBA255(255,255,255,255));
+        mat.setTexture("ColorMap", this.texture);
+        geom.setQueueBucket(RenderQueue.Bucket.Transparent);
+        geom.setMaterial(mat);
+
+        scene.attachChild(geom);
+    }
+
+    public void attachToScene(){
+
+        App.app.getRootNode().attachChild(scene);
+    }
+
+//    public void addSuperMesh(SuperMesh superMesh){
+//
+//        SuperMesh[] tmp = new SuperMesh[latestSuperMesh + 1];
+//        tmp = allSuperMeshes;
+//        allSuperMeshes = new SuperMesh[latestSuperMesh + 1];
+//        allSuperMeshes[latestSuperMesh] = superMesh;
+//        latestSuperMesh++;
+//
+//    }
+
+    public void deleteSuperMesh(){
+
+
+    }
 }

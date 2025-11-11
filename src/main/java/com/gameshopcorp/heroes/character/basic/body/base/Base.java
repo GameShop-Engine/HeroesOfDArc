@@ -45,12 +45,12 @@ public class Base {
         SuperSquare sRight = new SuperSquare("right", atmsRight, new Node("right"), numPoints, new Vector3f(1, 0, 0), new Vector3f(1, 0, 1), new Vector3f(1, 1, 0), new Vector3f(1, 1, 1));
 
 
-//        SuperSquare sTop = new SuperSquare("top", App.defaultATMS, new Node("top"), numPoints, new Vector3f(0, 1, 0), new Vector3f(1, 1, 0), new Vector3f(0, 1, 1), new Vector3f(1, 1, 1));
-//        SuperSquare sBottom = new SuperSquare("bottom", App.defaultATMS, new Node("bottom"), numPoints, new Vector3f(0, 0, 0), new Vector3f(1, 0, 0), new Vector3f(0, 0, 1), new Vector3f(1, 0, 1));
-//        SuperSquare sFront = new SuperSquare("front", App.defaultATMS, new Node("front"), numPoints, new Vector3f(0, 0, 1), new Vector3f(1, 0, 1), new Vector3f(0, 1, 1), new Vector3f(1, 1, 1));
-//        SuperSquare sBack = new SuperSquare("back", App.defaultATMS, new Node("back"), numPoints, new Vector3f(0, 0, 0), new Vector3f(1, 0, 0), new Vector3f(0, 1, 0), new Vector3f(1, 1, 0));
-//        SuperSquare sLeft = new SuperSquare("left", App.defaultATMS, new Node("left"), numPoints, new Vector3f(0, 0, 0), new Vector3f(0, 0, 1), new Vector3f(0, 1, 0), new Vector3f(0, 1, 1));
-//        SuperSquare sRight = new SuperSquare("right", App.defaultATMS, new Node("right"), numPoints, new Vector3f(1, 0, 0), new Vector3f(1, 0, 1), new Vector3f(1, 1, 0), new Vector3f(1, 1, 1));
+//        SuperSquare sTop = new SuperSquare("top", App.atmsCloud.get(0), new Node("top"), numPoints, new Vector3f(0, 1, 0), new Vector3f(1, 1, 0), new Vector3f(0, 1, 1), new Vector3f(1, 1, 1));
+//        SuperSquare sBottom = new SuperSquare("bottom", App.atmsCloud.get(0), new Node("bottom"), numPoints, new Vector3f(0, 0, 0), new Vector3f(1, 0, 0), new Vector3f(0, 0, 1), new Vector3f(1, 0, 1));
+//        SuperSquare sFront = new SuperSquare("front", App.atmsCloud.get(0), new Node("front"), numPoints, new Vector3f(0, 0, 1), new Vector3f(1, 0, 1), new Vector3f(0, 1, 1), new Vector3f(1, 1, 1));
+//        SuperSquare sBack = new SuperSquare("back", App.atmsCloud.get(0), new Node("back"), numPoints, new Vector3f(0, 0, 0), new Vector3f(1, 0, 0), new Vector3f(0, 1, 0), new Vector3f(1, 1, 0));
+//        SuperSquare sLeft = new SuperSquare("left", App.atmsCloud.get(0), new Node("left"), numPoints, new Vector3f(0, 0, 0), new Vector3f(0, 0, 1), new Vector3f(0, 1, 0), new Vector3f(0, 1, 1));
+//        SuperSquare sRight = new SuperSquare("right", App.atmsCloud.get(0), new Node("right"), numPoints, new Vector3f(1, 0, 0), new Vector3f(1, 0, 1), new Vector3f(1, 1, 0), new Vector3f(1, 1, 1));
 
         SuperCube superCube = new SuperCube(sTop, sBottom, sFront, sBack, sLeft, sRight);
 

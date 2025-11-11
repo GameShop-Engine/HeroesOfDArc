@@ -38,8 +38,9 @@ public class SuperSurface {
     ////
 
     public Vector3f[] vertices;
-    Vector2f[] texCoord;
+    public Vector2f[] texCoord;
 
+    public int[] indexes;
     public Mesh m;
 
     public Geometry geom;
@@ -258,7 +259,7 @@ public class SuperSurface {
             }
         }
 
-        short[] indexes = new short[totalIndexes];
+        this.indexes = new int[totalIndexes];
 
         int w = 0;
         int h = 0;
@@ -302,7 +303,7 @@ public class SuperSurface {
         // Setting buffers
         m.setBuffer(VertexBuffer.Type.Position, 3, BufferUtils.createFloatBuffer(this.vertices));
         m.setBuffer(VertexBuffer.Type.TexCoord, 2, BufferUtils.createFloatBuffer(this.texCoord));
-        m.setBuffer(VertexBuffer.Type.Index, 1, BufferUtils.createShortBuffer(indexes));
+        m.setBuffer(VertexBuffer.Type.Index, 1, BufferUtils.createIntBuffer(indexes));
 
         m.updateBound();
 

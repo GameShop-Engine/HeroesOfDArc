@@ -1,6 +1,7 @@
 package com.gameshopcorp.heroes.graphics;
 
 import com.jme3.texture.Image;
+import com.jme3.texture.Texture2D;
 import com.jme3.texture.image.ColorSpace;
 
 import java.nio.ByteBuffer;
@@ -31,6 +32,11 @@ public class ATMS {
         pixel.put(layer.outputLayer());
         pixels.add(pixel);
         return new Image(Image.Format.RGBA8, width, height, 8, pixels, ColorSpace.Linear);
+    }
+
+    public Texture2D texture2D(){
+
+        return new Texture2D(makeATMS());
     }
 
 }

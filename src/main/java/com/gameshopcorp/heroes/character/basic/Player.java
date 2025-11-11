@@ -1,5 +1,6 @@
 package com.gameshopcorp.heroes.character.basic;
 
+import com.gameshopcorp.heroes.app.App;
 import com.gameshopcorp.heroes.character.basic.body.Body;
 import com.gameshopcorp.heroes.character.basic.body.Eye;
 import com.gameshopcorp.heroes.character.basic.body.FaceCheek;
@@ -8,13 +9,23 @@ import com.gameshopcorp.heroes.character.basic.body.Head;
 import com.gameshopcorp.heroes.character.basic.body.Neck;
 import com.gameshopcorp.heroes.character.basic.body.Nose;
 import com.gameshopcorp.heroes.character.basic.body.Nostrils;
+import com.gameshopcorp.heroes.character.basic.body.base.Base;
+import com.gameshopcorp.heroes.graphics.SuperMesh;
 import com.jme3.math.Vector4f;
+import com.jme3.scene.Node;
+
+import java.util.ArrayList;
 
 import jme3tools.optimize.GeometryBatchFactory;
 
 public class Player {
 
+    public Node node;
+    public ArrayList<Base> parts;
     public Player(){
+
+        node = new Node("Player");
+        parts = new ArrayList<>();
 
 //        Head head = new Head(5, new Vector4f(255,215,172,255));
 //        Neck neck = new Neck(5, new Vector4f(255,215,172,255));
@@ -48,14 +59,42 @@ public class Player {
         FaceCheek rightFaceCheek = new FaceCheek(n, new Vector4f(255,255,255,255));
         rightFaceCheek.superMesh.node.move(1.5f,-2f,0);
 
-        leftEye.superMesh.bake();
-        rightEye.superMesh.bake();
-        nostrils.superMesh.bake();
-        nose.superMesh.bake();
-        foreHead.superMesh.bake();
-        leftFaceCheek.superMesh.bake();
-        rightFaceCheek.superMesh.bake();
+        parts.add(leftEye);
+        parts.add(rightEye);
+        parts.add(nostrils);
+        parts.add(foreHead);
+        parts.add(leftFaceCheek);
+        parts.add(rightFaceCheek);
 
+        bake();
 
+        addNode();
+//        leftEye.superMesh.bake();
+//        rightEye.superMesh.bake();
+//        nostrils.superMesh.bake();
+//        nose.superMesh.bake();
+//        foreHead.superMesh.bake();
+//        leftFaceCheek.superMesh.bake();
+//        rightFaceCheek.superMesh.bake();
+
+    }
+
+    public void bake(){
+
+        for (Base d: parts){
+            d.superMesh.makeATMS();
+            d.superMesh.bake();
+        }
+    }
+
+    public void addNode(){
+
+        for (Base d: parts) {
+            node.attachChild(d.superMesh.node);
+        }
+
+        GeometryBatchFactory.optimize(node);
+
+        App.app.getRootNode().attachChild(node);
     }
 }
