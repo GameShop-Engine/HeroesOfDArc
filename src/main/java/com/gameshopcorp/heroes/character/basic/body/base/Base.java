@@ -7,6 +7,7 @@ import com.gameshopcorp.heroes.app.App;
 import com.gameshopcorp.heroes.graphics.ATMS;
 import com.gameshopcorp.heroes.graphics.SuperMesh;
 import com.gameshopcorp.heroes.graphics.SuperSurface;
+import com.gameshopcorp.heroes.parallel.SuperLoadable;
 import com.gameshopcorp.heroes.supermesh.SuperCube;
 import com.gameshopcorp.heroes.supermesh.SuperSquare;
 import com.jme3.math.Vector2f;
@@ -16,7 +17,9 @@ import com.jme3.scene.Node;
 
 import java.util.ArrayList;
 
-public class Base {
+public class Base implements SuperLoadable {
+
+    ArrayList<SuperLoadable> loadables;
 
     public SuperMesh superMesh;
 
@@ -125,69 +128,6 @@ public class Base {
 
     }
 
-    /*
-    public void moveInner(String join,  Vector3f volume){
-
-        findJoin(get(join), new Vector2f(1,1)).moveJoin(volume);
-        findJoin(get(join), new Vector2f(2,1)).moveJoin(volume);
-        findJoin(get(join), new Vector2f(1,2)).moveJoin(volume);
-        findJoin(get(join), new Vector2f(2,2)).moveJoin(volume);
-
-
-    }
-
-    public void moveEdge(String join, Vector2f a, Vector2f b, Vector3f volume){
-
-        boolean horizontal = false;
-        boolean greater = false;
-
-        if (a.x == b.x){
-            horizontal = true;
-
-            if (b.y > a.y){
-                greater = true;
-            } else {
-                greater = false;
-            }
-        } else if (a.y == b.y){
-            horizontal = false;
-            if (b.x > a.x){
-                greater = true;
-            } else {
-                greater = false;
-            }
-        } else {
-            System.out.println("invalid");
-            return;
-        }
-
-        findJoin(get(join), a).moveJoin(volume);
-
-        if (horizontal) {
-            if (greater) {
-                findJoin(get(join), a.add(new Vector2f(0, 1))).moveJoin(volume);
-                findJoin(get(join),a.add(new Vector2f(0, 2))).moveJoin(volume);
-            } else{
-                findJoin(get(join), a.subtract(new Vector2f(0, 1))).moveJoin(volume);
-                findJoin(get(join),a.subtract(new Vector2f(0, 2))).moveJoin(volume);
-            }
-        } else {
-
-            if (greater) {
-                findJoin(get(join), a.add(new Vector2f(1, 0))).moveJoin(volume);
-                findJoin(get(join),a.add(new Vector2f(2, 0))).moveJoin(volume);
-            } else{
-                findJoin(get(join), a.subtract(new Vector2f(1, 0))).moveJoin(volume);
-                findJoin(get(join),a.subtract(new Vector2f(2, 0))).moveJoin(volume);
-            }
-        }
-        findJoin(get(join), b).moveJoin(volume);
-
-
-    }
-
-     */
-
     public void moveRange(String join, Vector2f a, Vector2f b, Vector3f volume){
 
         int incrX = 1;
@@ -256,6 +196,13 @@ public class Base {
         }
     }
 
-
-
+    int loadNum = 0;
+    @Override
+    public void load() {
+        if (loadNum < loadables.size()) {
+            loadables.get(loadNum).load();
+            System.out.println(loadNum);
+            loadNum++;
+        }
+    }
 }

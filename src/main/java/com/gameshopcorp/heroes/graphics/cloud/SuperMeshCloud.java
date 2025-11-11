@@ -75,18 +75,19 @@ public class SuperMeshCloud {
 
         for (Player d: allPlayers){
 
-            w += d.atms.width;
+            w = d.atms.width;
             h = d.atms.height;
+            break;
         }
 
-        atms = new ATMS("SuperMesh", w, h);
+        atms = new ATMS("SuperMesh", 3584, h);
         //System.out.println("w " + w + " h " + h);
         int w1 = 0;
         int h1 = 0;
 
         for (Player d: allPlayers){
 
-            //System.out.println("w1 " + w1 + " h1 " + h1);
+          //  System.out.println("w1 " + w1 + " h1 " + h1);
             atms.layer.putLayer(d.atms.layer, new Vector2f(w1,h1), new Vector2f(w1 + d.atms.width,h1 + d.atms.height));
             //w1 += d.atms.width;
             w1 += d.atms.height;
@@ -217,7 +218,7 @@ public class SuperMeshCloud {
 
         scene.attachChild(geom);
 
-        App.app.getRootNode().attachChild(scene);
+        App.scene.attachChild(scene);
     }
 
 //    public void create(){
@@ -395,4 +396,10 @@ public class SuperMeshCloud {
 //
 //
 //    }
+
+    public void cleanup(){
+
+       this.scene = null;
+       Runtime.getRuntime().gc();
+    }
 }

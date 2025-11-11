@@ -38,6 +38,7 @@ public class Layer {
             int x1 = 0;
             for (int x = (int)start.x; x < end.x; x++){
 
+
 //                if (input.layer[(int) (y * scale.y)][(int) (scale.x * x * 4)] == 0){
 //                    continue;
 //                }
@@ -53,9 +54,13 @@ public class Layer {
                 layer[y][(x * 4) + 2] = input.layer[(int) (y1 )][(int) (  x1 * 4) + 2];
                 layer[y][(x * 4) + 3]  = input.layer[(int) (y1  )][(int) ( x1 * 4) + 3];
 
-                x1++;
+                //if (x1 < width - 1) {
+                    x1++;
+              //  }
             }
-            y1++;
+            //if (y1 < height - 1) {
+                y1++;
+            //}
         }
 
     }

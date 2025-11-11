@@ -12,6 +12,8 @@ import com.gameshopcorp.heroes.character.basic.body.Nostrils;
 import com.gameshopcorp.heroes.character.basic.body.base.Base;
 import com.gameshopcorp.heroes.graphics.ATMS;
 import com.gameshopcorp.heroes.graphics.SuperMesh;
+import com.gameshopcorp.heroes.parallel.SuperLoadable;
+import com.gameshopcorp.heroes.parallel.SuperLoader;
 import com.jme3.material.Material;
 import com.jme3.material.RenderState;
 import com.jme3.math.ColorRGBA;
@@ -31,7 +33,9 @@ import java.util.Arrays;
 
 import jme3tools.optimize.GeometryBatchFactory;
 
-public class Player {
+public class Player {//implements SuperLoadable {
+
+    //public ArrayList<SuperLoadable> loadables;
 
     public Node node;
     public ArrayList<Base> parts;
@@ -55,6 +59,7 @@ public class Player {
         node = new Node("Player");
         parts = new ArrayList<>();
 
+        //loadables = new ArrayList<>();
 //        Head head = new Head(5, new Vector4f(255,215,172,255));
 //        Neck neck = new Neck(5, new Vector4f(255,215,172,255));
 //        neck.superMesh.node.scale(.5f,1.5f, .5f);
@@ -63,48 +68,109 @@ public class Player {
 //        body.superMesh.node.scale(3,1,1);
 //        body.superMesh.node.move(-1f,-2,-.5f);
 
+
         int n = 7;
-        Eye leftEye = new Eye(n, new Vector4f(255,255,255,255));
-        //leftEye.superMesh.node.move(-1.5f, 0, 0);
-        leftEye.translate(new Vector3f(-1.5f,0,0));
-        leftEye.superMesh.superMesh.get("front").atms.layer.drawCircle(64,64,32, new Vector4f(0,0,255,255));
 
-        Eye rightEye = new Eye(n, new Vector4f(255,255,255,255));
-        //rightEye.superMesh.node.move(1.5f, 0, 0);
-        leftEye.translate(new Vector3f(1.5f,0,0));
-        rightEye.superMesh.superMesh.get("front").atms.layer.drawCircle(64,64,32, new Vector4f(0,0,255,255));
+//        loadables.add(new SuperLoader(){
+//            @Override
+//            public void load() {
+              //  super.load();
+                Eye leftEye = new Eye(n, new Vector4f(255,255,255,255));
+                //leftEye.superMesh.node.move(-1.5f, 0, 0);
+                leftEye.translate(new Vector3f(-1.5f,0,0));
+                leftEye.superMesh.superMesh.get("front").atms.layer.drawCircle(64,64,32, new Vector4f(0,0,255,255));
+                parts.add(leftEye);
+                //parts.add(rightEye);
+//            }
+//        });
 
-        Nostrils nostrils = new Nostrils(n, new Vector4f(255,255,255,255));
-        //nostrils.superMesh.node.move(-0.5f,-2,0);
-        nostrils.translate(new Vector3f(-0.5f,-2,0));
+//        loadables.add(new SuperLoader(){
+//            @Override
+//            public void load() {
+//                super.load();
+                Eye rightEye = new Eye(n, new Vector4f(255,255,255,255));
+                //rightEye.superMesh.node.move(1.5f, 0, 0);
+                rightEye.translate(new Vector3f(1.5f,0,0));
+                rightEye.superMesh.superMesh.get("front").atms.layer.drawCircle(64,64,32, new Vector4f(0,0,255,255));
+               // parts.add(leftEye);
+                parts.add(rightEye);
+//            }
+//        });
+//
+//        loadables.add(new SuperLoader(){
+//            @Override
+//            public void load() {
+//                super.load();
+                Nostrils nostrils = new Nostrils(n, new Vector4f(255,255,255,255));
+                //nostrils.superMesh.node.move(-0.5f,-2,0);
+                nostrils.translate(new Vector3f(-0.5f,-2,0));
+                parts.add(nostrils);
+//            }
+//        });
+//
+//        loadables.add(new SuperLoader(){
+//            @Override
+//            public void load() {
+//                super.load();
+                Nose nose = new Nose(n, new Vector4f(255,255,255,255));
+                nose.translate(new Vector3f(-0.5f,-2,1));
+                //nose.superMesh.node.move(-0.5f,-2,1);
+                parts.add(nose);
+//            }
+//        });
+//
+//        loadables.add(new SuperLoader(){
+//            @Override
+//            public void load() {
+//                super.load();
+                ForeHead foreHead = new ForeHead(n, new Vector4f(255,255,255,255));
+                //foreHead.superMesh.node.move(-3.5f,2,0);
+                foreHead.translate(new Vector3f(-3.5f,2,0));
+                parts.add(foreHead);
+//            }
+//
+//        });
+//        loadables.add(new SuperLoader(){
+//            @Override
+//            public void load() {
+//                super.load();
+                FaceCheek leftFaceCheek = new FaceCheek(n, new Vector4f(255,255,255,255));
+                //leftFaceCheek.superMesh.node.move(-1.5f,-2f,0);
+                leftFaceCheek.translate(new Vector3f(-1.5f,-2,0));
+                parts.add(leftFaceCheek);
+//            }
+//        });
+//
+//        loadables.add(new SuperLoader(){
+//            @Override
+//            public void load() {
+//                super.load();
+                FaceCheek rightFaceCheek = new FaceCheek(n, new Vector4f(255,255,255,255));
+                //rightFaceCheek.superMesh.node.move(1.5f,-2f,0);
+                rightFaceCheek.translate(new Vector3f(1.5f,-2,0));
+                parts.add(rightFaceCheek);
+//            }
+//        });
+//
+//        loadables.add(new SuperLoader(){
+//            @Override
+//            public void load() {
+//                super.load();
+                bake();
+//            }
+//        });
+//
+//        loadables.add(new SuperLoader(){
+//            @Override
+//            public void load() {
+//                super.load();
+                addNode();
+//            }
+//        });
 
-        Nose nose = new Nose(n, new Vector4f(255,255,255,255));
-        nose.translate(new Vector3f(-0.5f,-2,1));
-        //nose.superMesh.node.move(-0.5f,-2,1);
-
-        ForeHead foreHead = new ForeHead(n, new Vector4f(255,255,255,255));
-        //foreHead.superMesh.node.move(-3.5f,2,0);
-        foreHead.translate(new Vector3f(-3.5f,2,0));
-
-        FaceCheek leftFaceCheek = new FaceCheek(n, new Vector4f(255,255,255,255));
-        //leftFaceCheek.superMesh.node.move(-1.5f,-2f,0);
-        leftFaceCheek.translate(new Vector3f(-1.5f,-2,0));
-
-        FaceCheek rightFaceCheek = new FaceCheek(n, new Vector4f(255,255,255,255));
-        //rightFaceCheek.superMesh.node.move(1.5f,-2f,0);
-        rightFaceCheek.translate(new Vector3f(1.5f,-2,0));
 
 
-        parts.add(leftEye);
-        parts.add(rightEye);
-        parts.add(nostrils);
-        parts.add(foreHead);
-        parts.add(leftFaceCheek);
-        parts.add(rightFaceCheek);
-
-        bake();
-
-        addNode();
+       // addNode();
 //        leftEye.superMesh.bake();
 //        rightEye.superMesh.bake();
 //        nostrils.superMesh.bake();
@@ -273,6 +339,17 @@ public class Player {
 
        // GeometryBatchFactory.optimize(node);
 
-        App.scene.attachChild(node);
+        //App.scene.attachChild(node);
     }
+
+//    public int loadNum = 0;
+//    @Override
+//    public void load() {
+//        if (loadNum < loadables.size()) {
+//            loadables.get(loadNum).load();
+//            System.out.println(loadNum);
+//            loadNum++;
+//        }
+//
+//    }
 }

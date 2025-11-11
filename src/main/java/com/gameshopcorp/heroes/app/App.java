@@ -1,5 +1,6 @@
 package com.gameshopcorp.heroes.app;
 
+import com.gameshopcorp.heroes.character.basic.Player;
 import com.gameshopcorp.heroes.graphics.ATMS;
 import com.gameshopcorp.heroes.graphics.cloud.ATMSCloud;
 import com.gameshopcorp.heroes.graphics.cloud.SuperMeshCloud;
@@ -35,12 +36,16 @@ public class App {
 
     public static SuperThreadPool startup;
 
+    //public static ArrayList<Player> player;
+
     public App(SimpleApplication app) {
 
         this.app = app;
         MakeTarget makeTarget = new MakeTarget();
         SelectMouseListener selectMouseListener = new SelectMouseListener();
         App.app.getInputManager().addRawInputListener(selectMouseListener);
+        //player = new ArrayList<>();
+        superMeshCloud = new ArrayList<>();
 
         superThreadPool = new SuperThreadPool();
         startup = new SuperThreadPool();
