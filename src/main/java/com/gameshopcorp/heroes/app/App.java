@@ -3,6 +3,7 @@ package com.gameshopcorp.heroes.app;
 import com.gameshopcorp.heroes.graphics.ATMS;
 import com.gameshopcorp.heroes.graphics.cloud.ATMSCloud;
 import com.gameshopcorp.heroes.graphics.cloud.SuperMeshCloud;
+import com.gameshopcorp.heroes.parallel.SuperThreadPool;
 import com.jme3.app.SimpleApplication;
 import com.jme3.math.FastMath;
 import com.jme3.math.Vector4f;
@@ -23,10 +24,17 @@ public class App {
     public static Node yAxisUpTarget;
     public static Node yAxisDownTarget;
 
+    public static Node scene;
+
    // public static ATMS defaultATMS;
 
     public static ArrayList<SuperMeshCloud> superMeshCloud;
     public static ArrayList<ATMSCloud> atmsCloud;
+
+    public static SuperThreadPool superThreadPool;
+
+    public static SuperThreadPool startup;
+
     public App(SimpleApplication app) {
 
         this.app = app;
@@ -34,6 +42,9 @@ public class App {
         SelectMouseListener selectMouseListener = new SelectMouseListener();
         App.app.getInputManager().addRawInputListener(selectMouseListener);
 
+        superThreadPool = new SuperThreadPool();
+        startup = new SuperThreadPool();
+        scene = new Node("Scene");
         // defaultATMS = new ATMS("default", 16384,16384);
         // defaultATMS.layer.drawCircle(defaultATMS.width /2, defaultATMS.height/2,defaultATMS.width,new Vector4f(255,255,255,255));
 

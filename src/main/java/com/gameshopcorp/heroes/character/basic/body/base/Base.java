@@ -67,6 +67,23 @@ public class Base {
         return this.superMesh.findJoin(superSurface, point);
     }
 
+    public void translate(Vector3f v){
+
+        moveRange("front", new Vector2f(0,0), new Vector2f(3,3), v);
+        moveRange("back", new Vector2f(0,0), new Vector2f(3,3), v);
+        moveRange("left", new Vector2f(1,1), new Vector2f(2,2), v);
+        moveRange("right", new Vector2f(1,1), new Vector2f(2,2), v);
+        moveRange("top", new Vector2f(1,0), new Vector2f(2,3), v);
+        moveRange("bottom", new Vector2f(1,0), new Vector2f(2,3), v);
+    }
+
+    public void rotate(){
+
+    }
+
+    public void scale(Vector3f v){
+
+    }
     public void moveCorners(Vector3f volume){
 
         findJoin(get("front"), new Vector2f(0,0)).moveJoin(new Vector3f(-volume.x, -volume.y, volume.z));
@@ -226,7 +243,7 @@ public class Base {
 
         average = average.divide(averageArray.size());
 
-        System.out.println(average);
+        //System.out.println(average);
         for (int ax = (int) a.x; ax <= b.x; ax += incrX){
 
             for (int ay = (int) a.y; ay <= b.y; ay += incrY){

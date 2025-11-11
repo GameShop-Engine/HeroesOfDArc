@@ -5,6 +5,8 @@ import com.gameshopcorp.heroes.character.basic.Player;
 import com.gameshopcorp.heroes.character.basic.body.base.Base;
 import com.gameshopcorp.heroes.graphics.ATMS;
 import com.gameshopcorp.heroes.graphics.cloud.SuperMeshCloud;
+import com.gameshopcorp.heroes.parallel.SuperThread;
+import com.gameshopcorp.heroes.parallel.SuperThreadPool;
 import com.gameshopcorp.heroes.supermesh.SuperSquare;
 import com.jme3.app.SimpleApplication;
 import com.jme3.material.Material;
@@ -22,6 +24,7 @@ import com.jme3.texture.Texture;
 import com.jme3.texture.Texture2D;
 
 import java.util.ArrayList;
+import java.util.concurrent.Callable;
 
 import jme3tools.optimize.GeometryBatchFactory;
 import jme3tools.optimize.TextureAtlas;
@@ -32,6 +35,11 @@ import jme3tools.optimize.TextureAtlas;
  * @author normenhansen
  */
 public class Main extends SimpleApplication {
+
+    //SuperMeshCloud superMeshCloud;
+
+    int xThreads = 1;
+    int sThreads = 1;
 
     public static void main(String[] args) {
         Main app = new Main();
@@ -104,6 +112,51 @@ public class Main extends SimpleApplication {
 
         flyCam.setEnabled(false);
 
+
+
+        for (int j = 0; j < xThreads; j++) {
+            SuperThread x = new SuperThread() {
+
+                @Override
+                public void run() {
+                    super.run();
+                    App.app.enqueue(() ->{
+                        System.out.println("X");
+                        for (int i = 0; i < sThreads; i++) {
+
+                            SuperThread s = new SuperThread() {
+
+                                @Override
+                                public void run() {
+                                    super.run();
+                                    System.out.println("s");
+                                    App.app.enqueue(() -> {
+
+                                        Player player = new Player();
+
+                                        done = true;
+                                        showRAM();
+                                    });
+
+                                }
+                            };
+                            App.superThreadPool.addThread(s);
+
+                        }
+                        done = true;
+                    });
+                }
+            };
+
+            App.startup.addThread(x);
+        }
+
+
+
+        //superMeshCloud.allPlayers.add(new Player());
+
+        //App.superThreadPool.startThreads();
+
 //        for (int i = 0; i < 2; i++) {
 //            Sphere s = new Sphere(30, 30, 1);
 //            Geometry geom = new Geometry("Sphere", s);
@@ -118,11 +171,17 @@ public class Main extends SimpleApplication {
 //            rootNode.attachChild(geom);
 //        }
         //getViewPort().setBackgroundColor(ColorRGBA.White);
-        for (int i = 0; i < 1000; i++) {
-       Player player = new Player();
-       player.node.move(0,0,i);
-
-        }
+//         superMeshCloud = new SuperMeshCloud();
+//
+//        superMeshCloud.allPlayers.add(new Player());
+//        superMeshCloud.bake();
+       // superMeshCloud.bake();
+//        for (int i = 0; i < 300; i++) {
+//            System.out.println(i);
+//       Player player = new Player();
+//       player.node.move(0,0,i);
+//
+//        }
 
 //        Runtime runtime = Runtime.getRuntime();
 //
@@ -157,47 +216,96 @@ public class Main extends SimpleApplication {
         //Geometry geom = TextureAtlas.makeAtlasBatch(rootNode, assetManager, 4096);
 
         //rootNode.detachAllChildren();
+        rootNode.attachChild(App.scene);
     }
 
     boolean checked = false;
     float elapsed = 0f;
+
+    int bakeTime = 0;
+
     @Override
     public void simpleUpdate(float tpf) {
         //TODO: add update code
+        App.startup.startThreads();
+        App.superThreadPool.startThreads();
+      //  App.superThreadPool.startThreads();
+//        if (App.startup.isDone()){
+//            System.out.println("Elapsed " + elapsed);
+//            App.superThreadPool.startThreads();
+//            showRAM();
+//        }
+//
+//        if (App.superThreadPool.isDone()){
+//            //rootNode.attachChild(App.scene);
+//            showRAM();
+//           // App.superThreadPool.cleanup();
+//            //App.startup.cleanup();
+//           // App.superThreadPool.cleanup();
+//        }
+
+
+//        enqueue(new Callable<Void>() {
+//            public Void call() throws Exception {
+//                //mySpatial.setLocalTranslation(newPosition); // Scene graph modification on the main thread
+//                Player player = new Player();
+//                return null;
+//            }
+//        });
+
+
+
+
 
         elapsed+=tpf;
         if (elapsed > 5 && !checked){
-            Runtime runtime = Runtime.getRuntime();
 
-            // Run garbage collector to get a more accurate picture of current memory usage
-            runtime.gc();
 
-            // Get total memory allocated to the JVM
-            long totalMemory = runtime.totalMemory(); // in bytes
-
-            // Get free memory available within the allocated total memory
-            long freeMemory = runtime.freeMemory(); // in bytes
-
-            // Calculate used memory
-            long usedMemory = totalMemory - freeMemory; // in bytes
-
-            // Convert bytes to megabytes for easier readability
-            long totalMemoryMB = totalMemory / (1024 * 1024);
-            long freeMemoryMB = freeMemory / (1024 * 1024);
-            long usedMemoryMB = usedMemory / (1024 * 1024);
-
-            // Print the memory information
-            System.out.println("JVM Memory Usage:");
-            System.out.println("  Total Memory: " + totalMemoryMB + " MB");
-            System.out.println("  Free Memory:  " + freeMemoryMB + " MB");
-            System.out.println("  Used Memory:  " + usedMemoryMB + " MB");
-
-            System.out.println(settings.isVSync());
-            System.out.println(settings.getFrameRate());
-            System.out.println(settings.getFrequency());
 
             checked = true;
         }
+
+//        if (bakeTime > 4){
+//            System.out.println("Bake");
+//            rootNode.attachChild(App.scene);
+//        }
+    }
+
+    public void showRAM(){
+        //GeometryBatchFactory.optimize(App.scene);
+        Runtime runtime = Runtime.getRuntime();
+
+        // Run garbage collector to get a more accurate picture of current memory usage
+        runtime.gc();
+
+        // Get total memory allocated to the JVM
+        long totalMemory = runtime.totalMemory(); // in bytes
+
+        // Get free memory available within the allocated total memory
+        long freeMemory = runtime.freeMemory(); // in bytes
+
+        // Calculate used memory
+        long usedMemory = totalMemory - freeMemory; // in bytes
+
+        // Convert bytes to megabytes for easier readability
+        long totalMemoryMB = totalMemory / (1024 * 1024);
+        long freeMemoryMB = freeMemory / (1024 * 1024);
+        long usedMemoryMB = usedMemory / (1024 * 1024);
+
+        // Print the memory information
+        System.out.println("JVM Memory Usage:");
+        System.out.println("  Total Memory: " + totalMemoryMB + " MB");
+        System.out.println("  Free Memory:  " + freeMemoryMB + " MB");
+        System.out.println("  Used Memory:  " + usedMemoryMB + " MB");
+
+        System.out.println(settings.isVSync());
+        System.out.println(settings.getFrameRate());
+        System.out.println(settings.getFrequency());
+
+        //elapsed = 0f;
+
+        //bakeTime++;
+
     }
 
     @Override

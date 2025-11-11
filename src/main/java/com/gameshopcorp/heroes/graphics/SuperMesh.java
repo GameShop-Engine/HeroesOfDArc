@@ -25,7 +25,7 @@ public class SuperMesh {
     public Node node;
 
 
-    ATMS atms;
+    public ATMS atms;
     ////
 
     public Vector3f[] vertices;
@@ -179,19 +179,24 @@ public class SuperMesh {
 
             if (sm != null) {
                 for (int x = 0; x < sm.vertices.length; x++) {
+                    vertices[x + (v)] = new Vector3f();
                     vertices[x + (v)] = sm.vertices[x];
 
                 }
                 v += sm.vertices.length;
 
                 for (int x = 0; x < sm.texCoord.length; x++) {
+
+                    texCoord[x + (t)] = new Vector2f();//sm.texCoord[x].mult(it, 1);
                     texCoord[x + (t)] = sm.texCoord[x].mult(it, 1);
                 }
 
                 t += sm.texCoord.length;
 
                 for (int x = 0; x < sm.indexes.length; x++){
-                   indexes[x + (i)] = sm.indexes[x] + i;
+
+                    //indexes[x + (i)] = sm.indexes[x] + i;
+                    indexes[x + (i)] = sm.indexes[x] + i;
                 }
 
                 //indexes[i + 6] = (short) -1;
