@@ -1,13 +1,11 @@
 package com.mygame;
 
 import com.gameshopcorp.heroes.app.App;
-import com.gameshopcorp.heroes.character.basic.Player;
-import com.gameshopcorp.heroes.graphics.cloud.SuperMeshCloud;
-import com.gameshopcorp.heroes.parallel.SuperCallable;
-import com.gameshopcorp.heroes.parallel.SuperLoadable;
-import com.gameshopcorp.heroes.parallel.SuperLoader;
-import com.gameshopcorp.heroes.parallel.SuperThread;
+
+import com.gameshopcorp.heroes.level.Level;
+
 import com.jme3.app.SimpleApplication;
+import com.jme3.math.ColorRGBA;
 import com.jme3.renderer.RenderManager;
 import com.jme3.system.AppSettings;
 
@@ -43,29 +41,7 @@ public class Main extends SimpleApplication { //implements SuperLoadable {
         app.start();
     }
 
-    @Override
-    public void simpleInitApp() {
 
-
-        AppSettings appSettings = new AppSettings(true);
-        appSettings.setFrameRate(60);
-        appSettings.setVSync(false);
-        //appSettings.setFrequency(0);
-        setSettings(appSettings);
-
-        App app = new App(this);
-
-//        for (int i = 0; i < 64; i++){
-//            App.player.add(new Player());
-//        }
-
-        loadLevel();
-
-        flyCam.setEnabled(false);
-
-        rootNode.attachChild(App.scene);
-
-    }
 
     boolean checked = false;
     float elapsed = 0f;
@@ -75,33 +51,33 @@ public class Main extends SimpleApplication { //implements SuperLoadable {
     Future<String> result;
 
     @Override
-    public void simpleUpdate(float tpf) {
-        //TODO: add update code
+    public void simpleInitApp() {
+        App app = new App(this);
 
-        if (elapsed >= 5 && !checked) {
-            loadLevel();
+        flyCam.setEnabled(false);
 
-            checked = true;
-        }
-        elapsed += tpf;
-        //System.out.println(tpf);
+        getViewPort().setBackgroundColor(ColorRGBA.Black);
 
-        //loadLevel();
-
-//        if (result != null){
-//            if (result.isDone()){
+        //com.jme3.renderer.opengl.GLRenderer.
+//        new Thread(() -> {
+//            for (int i = 0; i < 64; i++) {
+//                enqueue(() ->{
+//                    Base b = new Base(5, new Vector4f(255,255,255,255));
+//                    b.superMesh.bake();
+//                    App.scene.attachChild(b.superMesh.node);
+//                });
 //
-//                load();
 //            }
-//        }
-        // load();
+//            GeometryBatchFactory.optimize(App.scene,true);
+//        }).start();
+        // for (int i = 0; i < 25; i++) {
+        Level levelOne = new Level();
+        // }
+        // GeometryBatchFactory.optimize(App.scene);
+        rootNode.attachChild(App.scene);
 
-//        elapsed+=tpf;
-//        if (elapsed > 1 && !checked){
-//            checked = true;
-//            loadLevel();
-//
-//        }
+        showRAM();
+
 
     }
 
@@ -143,125 +119,19 @@ public class Main extends SimpleApplication { //implements SuperLoadable {
     }
 
     @Override
+    public void simpleUpdate(float tpf) {
+        super.simpleUpdate(tpf);
+    }
+
+    @Override
     public void simpleRender(RenderManager rm) {
         //TODO: add render code
     }
 
 
-    public void loadLevel() {
-
-        if (App.superMeshCloud.size() < xThreads){
-            App.superMeshCloud.add(new SuperMeshCloud());
-        }
-
-        if (j < xThreads) {
-            if (App.superMeshCloud.get(j) != null) {
-                for (int i = 0; i < sThreads; i++) {
-                    App.superMeshCloud.get(j).allPlayers.add(new Player());
-
-                }
-                App.superMeshCloud.get(j).bake();
-            }
-            j++;
-        }
-        /*
-        System.out.println("processors " + Runtime.getRuntime().availableProcessors());
-
-//        ScheduledThreadPoolExecutor executor = new ScheduledThreadPoolExecutor(Runtime.getRuntime().availableProcessors());
-//
-//        SuperCallable loop = new SuperCallable() {
-//
-//            @Override
-//            public String call() {
-//                try {
-//                    super.call();
-//                } catch (Exception e) {
-//                    throw new RuntimeException(e);
-//                }
-//                while ( j < xThreads ) {
-
-                    showRAM();
-                    //SuperCallable x = new SuperCallable() {
-
-//                        @Override
-//                        public String call() throws Exception {
-//                            super.call();
 
 
-//                    try {
-//                        Thread.sleep(2000); // Simulate some work
-//                    } catch (InterruptedException e) {
-//                        e.printStackTrace();
-//                    }
-                            System.out.println("X");
-                           // for (int i = 0; i < sThreads; i++) {
-                                SuperCallable s = new SuperCallable() {
-
-                                    @Override
-                                    public String call() throws Exception {
-                                        super.call();
-//                                try {
-//                                    Thread.sleep(2000); // Simulate some work
-//                                } catch (InterruptedException e) {
-//                                    e.printStackTrace();
-//                                }
-                                        System.out.println("s");
-                                        App.superMeshCloud.add(new SuperMeshCloud());
-                                       App.superMeshCloud.get(j).allPlayers.add(new Player());
-                                       App.superMeshCloud.get(j).bake();
-                                        j++;
-                                        //done = true;
-                                        //showRAM();
-                                        return "";
-                                    }
-                                };
-
-                                Future<String> result = App.app.enqueue(s);
-                                //App.superThreadPool.addThread(s);
-
-                            //}
-                            // done = true;
-
-
-                            return "";
-                        }
-
-
-                   // };
-
-                    //Future<String> result = executor.submit(x);
-
-
-                    //Executor.(x);
-                    //App.startup.addThread(x);
-
-
-                //}
-                return "";
-            }
-
-        };
-
-        this.result = executor.submit(loop);
-
-        rootNode.attachChild(App.scene);
-
-         */
-    }
 
 }
-//    int loadNum = 0;
-//    @Override
-//    public void load() {
 
-//        if (loadNum < App.player.size()){
-//            App.player.get(loadNum).load();
-//            if (App.player.get(loadNum).loadNum == App.player.get(loadNum).loadables.size()) {
-//                //GeometryBatchFactory.optimize(App.scene);
-//                loadNum++;
-//            }
-//        }
-//
-//    }
-//}
 

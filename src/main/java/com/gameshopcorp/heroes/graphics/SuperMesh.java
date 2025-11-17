@@ -21,7 +21,7 @@ import java.util.HashMap;
 public class SuperMesh {
 
     public HashMap<String, SuperSurface> superMesh;
-    public ArrayList<SuperJoin> superJoins;
+    public SuperJoin[] superJoins;
     public Node node;
 
 
@@ -42,7 +42,7 @@ public class SuperMesh {
     public SuperMesh(String[] names, SuperSurface[] superSurfaces){
 
         superMesh = new HashMap<>();
-        superJoins = new ArrayList<>();
+        superJoins = new SuperJoin[96];
 //        linkNames = new HashMap<>();
 //        linkValues = new HashMap<>();
 
@@ -55,14 +55,14 @@ public class SuperMesh {
 
 
             superMesh.put(s, superSurfaces[i]);
-            //node.attachChild(superSurfaces[i].node);
+            node.attachChild(superSurfaces[i].node);
             i++;
 
         }
 
        // makeATMS();
 
-        //App.app.getRootNode().attachChild(node);
+       // App.scene.attachChild(node);
 
 
     }
@@ -100,6 +100,8 @@ public class SuperMesh {
         return null;
     }
 
+
+
     public void makeATMS(){
 
         int w = 0;
@@ -107,9 +109,12 @@ public class SuperMesh {
 
         for (SuperSurface superSurface: superMesh.values()){
 
-            w += superSurface.atms.width;
+            w = superSurface.atms.width * superMesh.size();
             h = superSurface.atms.height;
+            break;
         }
+
+
 
         atms = new ATMS("SuperMesh", w, h);
        // System.out.println("w " + w + " h " + h);
@@ -124,12 +129,20 @@ public class SuperMesh {
             //h = superSurface.atms.height;
         }
     }
+
+
+
     public void bake(){
+
         for (SuperSurface superSurface: superMesh.values()){
 
             superSurface.bake();
         }
 
+
+
+
+        makeATMS();
 
         this.texture = atms.texture2D();
 
@@ -164,7 +177,7 @@ public class SuperMesh {
             }
         }
 
-        this.indexes = new int[totalIndexes];
+        this.indexes = new int[totalIndexes];// + (((superMesh.size()) * 6))];
 
         int w = 0;
         int h = 0;
@@ -174,39 +187,47 @@ public class SuperMesh {
         int i = 0;
         int j = 0;
 
-        int it = 1;
+        int it = 0;
+
+        int y = 0;
+
         for (SuperSurface sm : superMesh.values()){
 
             if (sm != null) {
                 for (int x = 0; x < sm.vertices.length; x++) {
                     vertices[x + (v)] = new Vector3f();
                     vertices[x + (v)] = sm.vertices[x];
-
+                    //System.out.println("V " + v);
                 }
                 v += sm.vertices.length;
 
                 for (int x = 0; x < sm.texCoord.length; x++) {
 
                     texCoord[x + (t)] = new Vector2f();//sm.texCoord[x].mult(it, 1);
-                    texCoord[x + (t)] = sm.texCoord[x].mult(it, 1);
+                    Vector2f finalTexCoord = sm.texCoord[x].add(new Vector2f(it, 0));
+                    texCoord[x + (t)] = new Vector2f(finalTexCoord.x/superMesh.size(), finalTexCoord.y);
                 }
 
                 t += sm.texCoord.length;
 
                 for (int x = 0; x < sm.indexes.length; x++){
 
-                    //indexes[x + (i)] = sm.indexes[x] + i;
-                    indexes[x + (i)] = sm.indexes[x] + i;
+                    indexes[x + (i)] = sm.indexes[x] + y;// + (i);
+
+
                 }
+                y += sm.vertices.length;
 
                 //indexes[i + 6] = (short) -1;
 
-                i += sm.indexes.length;
-                //j += 4;
+                i += (sm.indexes.length);
+
+
             }
             it++;
         }
 
+        //System.out.println("INDICES: " + Arrays.toString(indexes));
 
         // Setting buffers
         m.setBuffer(VertexBuffer.Type.Position, 3, BufferUtils.createFloatBuffer(this.vertices));
@@ -214,6 +235,7 @@ public class SuperMesh {
         m.setBuffer(VertexBuffer.Type.Index, 1, BufferUtils.createIntBuffer(indexes));
 
         m.updateBound();
+
 
 
         //*****RenderState*****
@@ -241,7 +263,11 @@ public class SuperMesh {
         geom.setQueueBucket(RenderQueue.Bucket.Transparent);
         geom.setMaterial(mat);
 
-        node.attachChild(geom);
+        //node.attachChild(geom);
+
+       // App.scene.attachChild(node);
+
+
     }
 
      

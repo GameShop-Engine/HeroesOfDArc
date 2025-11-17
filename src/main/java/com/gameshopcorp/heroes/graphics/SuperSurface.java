@@ -68,6 +68,10 @@ public class SuperSurface {
 //    public void updateTexture(Texture2D texture){
 //        this.texture = texture;
 //    }
+
+//    public void rotate90(){
+//
+//    }
     public SimpleMesh getMeshFromValue(int x, int y){
 
         return  simpleMeshes[(this.vInfinitesimals[0].infinitesimals.length * x) + y];
@@ -162,7 +166,7 @@ public class SuperSurface {
 
         for (int i = 0; i < this.vInfinitesimals.length; i++){
 
-            this.vInfinitesimals[i] = new SuperLine(new Vector3f[]{currencyLines[0].infinitesimals[i], currencyLines[1].infinitesimals[i], currencyLines[2].infinitesimals[i], currencyLines[3].infinitesimals[i]}, (byte)vInfinitesimals.length);
+            this.vInfinitesimals[i] = new SuperLine(new Vector3f[]{currencyLines[0].infinitesimals[i], currencyLines[1].infinitesimals[i], currencyLines[2].infinitesimals[i], currencyLines[3].infinitesimals[i]}, (byte)vInfinitesimals.length - 1);
 
         }
     }
@@ -308,6 +312,7 @@ public class SuperSurface {
         m.updateBound();
 
 
+
         //*****RenderState*****
 
         // texture.setWrap(Texture.WrapMode.Repeat);
@@ -333,6 +338,9 @@ public class SuperSurface {
         geom.setQueueBucket(RenderQueue.Bucket.Transparent);
         geom.setMaterial(mat);
 
-        node.attachChild(geom);
+       // node.attachChild(geom);
+
+
+        //App.scene.attachChild(node);
     }
 }

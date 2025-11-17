@@ -1,7 +1,7 @@
-package com.gameshopcorp.heroes.parallel;
-
-public interface SuperLoadable {
-
-
-    void load();
-}
+//package com.gameshopcorp.heroes.parallel;
+//
+//public interface SuperLoadable {
+//
+//
+//    void load();
+//}

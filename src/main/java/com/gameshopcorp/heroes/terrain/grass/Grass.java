@@ -1,20 +1,28 @@
 package com.gameshopcorp.heroes.terrain.grass;
 
+import com.gameshopcorp.heroes.app.App;
+import com.gameshopcorp.heroes.graphics.ATMS;
 import com.gameshopcorp.heroes.graphics.SuperLine;
 import com.gameshopcorp.heroes.graphics.SuperMesh;
+import com.gameshopcorp.heroes.supermesh.SuperSquare;
+import com.gameshopcorp.heroes.terrain.Terrain;
 import com.jme3.math.Vector3f;
+import com.jme3.math.Vector4f;
 
-public class Grass {
+public class Grass extends Terrain {
 
-    SuperMesh superMesh;
+
+    public SuperSquare plane;
+    public ATMS atms;
     public Grass(){
 
-        int numPoints = 2;
-        SuperLine superLine = new SuperLine(new Vector3f[]{new Vector3f(0,0,0), new Vector3f(.66f, 0, 0),new Vector3f(1.33f,0,0), new Vector3f(2f, 0, 0)}, numPoints);
-        SuperLine superLine1 = new SuperLine(new Vector3f[]{new Vector3f(0,.33f,0), new Vector3f(.66f, .33f, 0),new Vector3f(1.33f,.33f,0), new Vector3f(2f, .33f, 0)}, numPoints);
-        SuperLine superLine2 = new SuperLine(new Vector3f[]{new Vector3f(0,.66f,0), new Vector3f(.66f, .66f, 0),new Vector3f(1.33f,.66f,0), new Vector3f(2f, .66f, 0)}, numPoints);
-        SuperLine superLine3 = new SuperLine(new Vector3f[]{new Vector3f(0,1f,0), new Vector3f(.66f, 1f, 0),new Vector3f(1.33f,1f,0), new Vector3f(2f, 1f, 0)}, numPoints);
-        
-
+        node.setName("Grass");
+        atms = new ATMS("Grass", 128,128);
+        atms.layer.drawSquare(64,64,64,new Vector4f(0,255,0,255));
+        plane = new SuperSquare("Grass", atms, node, 2, new Vector3f(0,0,0), new Vector3f(0,0,1), new Vector3f(1,0,0), new Vector3f(1,0,1));
+        plane.superMesh.bake();
+        node.attachChild(plane.superMesh.geom);
+        //node.attachChild(plane.superMesh.node);
+        App.scene.attachChild(node);
     }
 }

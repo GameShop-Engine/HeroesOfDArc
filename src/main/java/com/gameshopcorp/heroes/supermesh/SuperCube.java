@@ -316,7 +316,7 @@ public class SuperCube {
         superJoins.add(bottom32);
         superJoins.add(bottom33);
 
-        superMesh.superJoins = superJoins;
+        superMesh.superJoins = superJoins.toArray(new SuperJoin[0]);
     }
 
 }

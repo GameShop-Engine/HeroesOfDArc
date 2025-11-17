@@ -48,7 +48,7 @@ public class Layer {
 //                layer[y][(x * 4) + 2] = input.layer[(int) (y * scale.y)][(int) (scale.x * x * 4) + 2];
 //                layer[y][(x * 4) + 3]  = input.layer[(int) (y * scale.y)][(int) (scale.x * x * 4) + 3];
 
-                //System.out.println("x " + x);
+                ////System.out.println("x " + x);
                 layer[y][x * 4] =  input.layer[(int) (y1)][(int) (  x1 * 4)];
                 layer[y][(x * 4) + 1]  = input.layer[(int) (y1 )][(int) (  x1 * 4) + 1];
                 layer[y][(x * 4) + 2] = input.layer[(int) (y1 )][(int) (  x1 * 4) + 2];
@@ -120,13 +120,13 @@ public class Layer {
             endY = ((pointY + currency) - 1);
         }
 
-        //        System.out.println("StartX " + startX);
+        //        //System.out.println("StartX " + startX);
 ////
-//        System.out.println("StartY " + startY);
+//        //System.out.println("StartY " + startY);
 //
-//        System.out.println("EndX " + endX);
+//        //System.out.println("EndX " + endX);
 //
-//        System.out.println("EndY " + endY);
+//        //System.out.println("EndY " + endY);
         for (int y = startY; y < endY; y++){
 
             for (int x = startX; x < endX; x++) {
@@ -154,23 +154,23 @@ public class Layer {
 
                     i += 4;
                 } catch (ArrayIndexOutOfBoundsException ex){
-                    System.out.println("i " + i);
-                    System.out.println("x " + x);
-                    System.out.println("y " + y);
+                    //System.out.println("i " + i);
+                    //System.out.println("x " + x);
+                    //System.out.println("y " + y);
 
                 }
             }
 
         }
 
-        //System.out.println("OutPut" + output[2]);
+        ////System.out.println("OutPut" + output[2]);
         return output;
     }
 
     public void drawSuperLine(SuperLine cl, short radius, Vector4f color){
 
         //int i = 0;
-        System.out.println(Arrays.asList(cl.infinitesimals));
+        //System.out.println(Arrays.asList(cl.infinitesimals));
         for (int i = 0; i < cl.infinitesimals.length - 1; i++){
 
             //if (i < cl.infinitesimals.length - 1) {
@@ -185,7 +185,7 @@ public class Layer {
     }
     public void drawLine(Vector2f pointA, Vector2f pointB, short radius, Vector4f color){
 
-        //System.out.println("drawLine " + pointA.toString(new DecimalFormat("##")) + " " + pointB.toString(new DecimalFormat("##")) + " " + radius + " " + color.toString(new DecimalFormat("##")));
+        ////System.out.println("drawLine " + pointA.toString(new DecimalFormat("##")) + " " + pointB.toString(new DecimalFormat("##")) + " " + radius + " " + color.toString(new DecimalFormat("##")));
 //       float dist = pointA.distance(pointB);
 //
 //        int i = (int) (dist/radius);
@@ -200,7 +200,7 @@ public class Layer {
 //            tempB = pointB;
 //        } else {
 //
-//            //System.out.println("ELSE");
+//            ////System.out.println("ELSE");
 //            tempA = pointB;
 //            tempB = pointA;
 //        }
@@ -243,17 +243,17 @@ public class Layer {
                 break;
             }
 //
-            //  System.out.println(distX + " " + distY);
+            //  //System.out.println(distX + " " + distY);
             drawCircle((short)x, (short)y, radius, color);
             if (distX != 0){
                 if (distX >= 1) {
-                    //System.out.println("x+ " + x);
+                    ////System.out.println("x+ " + x);
                     addX = (FastMath.sqrt(FastMath.sqr(radius * distX) - FastMath.sqr(radius)));
                     addX /= (FastMath.abs(distY * 4));
 
                     if (addX == 0 || Float.isNaN(addX) || Float.isInfinite(addX)){
 
-                        System.out.println("NAN");
+                        //System.out.println("NAN");
                         //addY = (FastMath.sqrt(FastMath.sqr(radius * distY) - FastMath.sqr(FastMath.abs(radius))));
                         addX = 1;
                     }
@@ -270,12 +270,12 @@ public class Layer {
                 }
 
                 else if (distX <= -1) {
-                    // System.out.println("x- " + x);
+                    // //System.out.println("x- " + x);
                     addX = (FastMath.sqrt(FastMath.sqr(radius * distX) - FastMath.sqr(FastMath.abs(radius))));
                     addX /= (FastMath.abs(distY * 4));
                     if (addX == 0 || Float.isNaN(addX) || Float.isInfinite(addX)){
 
-                        System.out.println("NAN");
+                        //System.out.println("NAN");
                         //addY = (FastMath.sqrt(FastMath.sqr(radius * distY) - FastMath.sqr(FastMath.abs(radius))));
                         addX = 1;
                     }
@@ -293,12 +293,12 @@ public class Layer {
             }
             if (distY != 0){
                 if (distY >= 1) {
-                    // System.out.println("y+ " + y);
+                    // //System.out.println("y+ " + y);
                     addY = (FastMath.sqrt(FastMath.sqr(radius * distY) - FastMath.sqr(radius)));
                     addY /= (FastMath.abs(distX * 4));
                     if (addY == 0 || Float.isNaN(addY) || Float.isInfinite(addY)){
 
-                        System.out.println("NAN");
+                        //System.out.println("NAN");
                         //addY = (FastMath.sqrt(FastMath.sqr(radius * distY) - FastMath.sqr(FastMath.abs(radius))));
                         addY = 1;
                     }
@@ -315,13 +315,13 @@ public class Layer {
                 }
 
                 else if (distY <= -1) {
-                    //  System.out.println("y- " + y);
+                    //  //System.out.println("y- " + y);
                     addY = (FastMath.sqrt(FastMath.sqr(radius * distY) - FastMath.sqr(FastMath.abs(radius))));
                     addY /= FastMath.abs(distX * 4);
-                    // System.out.println("addY" + addY);
+                    // //System.out.println("addY" + addY);
                     if (addY == 0 || Float.isNaN(addY) || Float.isInfinite(addY)){
 
-                        System.out.println("NAN");
+                        //System.out.println("NAN");
                         //addY = (FastMath.sqrt(FastMath.sqr(radius * distY) - FastMath.sqr(FastMath.abs(radius))));
                         addY = 1;
                     }
@@ -335,7 +335,7 @@ public class Layer {
                         y = increment(lastY, y, -1);
                         // lastY = y;
                     }
-                    //System.out.println("newY- " + y);
+                    ////System.out.println("newY- " + y);
 
                 }
             }
@@ -379,12 +379,12 @@ public class Layer {
 
                 inc--;
             }
-            System.out.println(inc);
+            //System.out.println(inc);
 
             // lastX = x;
             //break;
         }
-//            System.out.println(lastY + " " + y);
+//            //System.out.println(lastY + " " + y);
 //            if (lastY == y){
 //             if (addY >= 0){
 //                y++;
@@ -406,7 +406,7 @@ public class Layer {
 //        layer[((width - pointX) * (height - pointY) * 4) + 2] = color.asBytesRGBA()[2];
 //        layer[((width - pointX) * (height - pointY) * 4) + 3] = color.asBytesRGBA()[3];
 
-        //System.out.println(ColorRGBA.White.getColorArray()[0]);
+        ////System.out.println(ColorRGBA.White.getColorArray()[0]);
         int startX = -1;
         int startY = -1;
         int endX = -1;
@@ -440,13 +440,13 @@ public class Layer {
             endY = (short) ((pointY + radius) - 1);
         }
 
-//        System.out.println("StartX " + startX);
+//        //System.out.println("StartX " + startX);
 ////
-//        System.out.println("StartY " + startY);
+//        //System.out.println("StartY " + startY);
 //
-//        System.out.println("EndX " + endX);
+//        //System.out.println("EndX " + endX);
 //
-//        System.out.println("EndY " + endY);
+//        //System.out.println("EndY " + endY);
         int i = 0;
         for (int y = startY; y <= endY; y++){
 
@@ -455,15 +455,15 @@ public class Layer {
 //                if (x <= FastMath.sqrt(FastMath.sqr(radius) - FastMath.sqr(y - pointY)) + pointX &&
 //                        y <= FastMath.sqrt(FastMath.sqr(radius) - FastMath.sqr(x - pointX)) + pointY) {
 
-                //System.out.println("FastMath " + ((FastMath.sqr(FastMath.abs(((float) pointX) - ((float) x/4))) + FastMath.sqr(FastMath.abs(pointY - y)))));
+                ////System.out.println("FastMath " + ((FastMath.sqr(FastMath.abs(((float) pointX) - ((float) x/4))) + FastMath.sqr(FastMath.abs(pointY - y)))));
                 // if ((FastMath.sqr(FastMath.abs((((float) x/4) - (float) pointX))) + FastMath.sqr(FastMath.abs(y - pointY))) < FastMath.sqr(radius) )
 
-//                System.out.println("INTRIANGLE " + FastMath.pointInsideTriangle(new Vector2f(FastMath.sqr(pointX), FastMath.sqr(pointY)), new Vector2f(FastMath.sqr(pointX + radius), FastMath.sqr(pointY)), new Vector2f(FastMath.sqr(pointX), FastMath.sqr(pointY + radius)), new Vector2f(FastMath.sqr(x), FastMath.sqr(y))) );
+//                //System.out.println("INTRIANGLE " + FastMath.pointInsideTriangle(new Vector2f(FastMath.sqr(pointX), FastMath.sqr(pointY)), new Vector2f(FastMath.sqr(pointX + radius), FastMath.sqr(pointY)), new Vector2f(FastMath.sqr(pointX), FastMath.sqr(pointY + radius)), new Vector2f(FastMath.sqr(x), FastMath.sqr(y))) );
 //               if(FastMath.pointInsideTriangle(new Vector2f(FastMath.sqr(pointX), FastMath.sqr(pointY)), new Vector2f(FastMath.sqr(pointX + radius), FastMath.sqr(pointY)), new Vector2f(FastMath.sqr(pointX), FastMath.sqr(pointY + radius)), new Vector2f(x, y)) == 1)
 //
                 //int i = (pointX - x / 4) * (pointX - x / 4);
-//                System.out.println ("FastMath " +(float) ((pointX - x ) * (pointX - x )) + ((pointY - y) * (pointY - y)));
-//               System.out.println ("Radius" + (radius * radius));
+//                //System.out.println ("FastMath " +(float) ((pointX - x ) * (pointX - x )) + ((pointY - y) * (pointY - y)));
+//               //System.out.println ("Radius" + (radius * radius));
 
                 if ( ((pointX - x ) * (pointX - x)) + ((pointY - y) * (pointY - y)) < (radius * radius))
 
@@ -473,7 +473,7 @@ public class Layer {
                     layer[y][(x * 4) + 1] = (byte) (color.y);
                     layer[y][(x * 4) + 2] = (byte) (color.z);
                     layer[y][(x * 4) + 3] = (byte) (color.w);
-                    //System.out.println("IN");
+                    ////System.out.println("IN");
 
                 }
             }
